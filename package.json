@@ -1,0 +1,20 @@
+{
+  "name": "omg",
+  "version": "1.0.0",
+  "description": "1) acquisire stream frontend 2) inviare stream in post 3) salvare stream in avi/mpeg (https://www.webrtc-experiment.com/RecordRTC/) 4) convertire in gif (nodejs - https://github.com/yahoo/gifshot | php - https://github.com/buggedcom/phpvideotoolkit-v2)",
+  "main": "index.js",
+  "dependencies": {
+    "recordrtc-nodejs": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/fullbl/omg-dance-collective.git"
+  },
+  "author": "full",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/fullbl/omg-dance-collective#readme"
+}
