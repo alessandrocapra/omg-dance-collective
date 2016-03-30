@@ -1,3 +1,19 @@
+// Parte Ale
+
+// resize viewport
+function dynHeight() {
+	var footerHeight = $('footer').height();
+	var height = $(window).height() - footerHeight;
+	console.log(height);
+	$("main #intro").css('height', height);
+}
+
+$(document).ready(function() {
+	dynHeight();
+	$(window).bind('resize', dynHeight());
+});
+
+// Parte Daniè
 var Omg = function(){
 	this.startButton = document.getElementById('start');
 	this.stopButton = document.getElementById('stop');

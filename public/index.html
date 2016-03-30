@@ -1,15 +1,50 @@
 <html>
-	<head>
-		<title>OMG</title>
+<head>
+	<title>OMG Dance Collective</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/stile.css">
+</head>
 
-	</head>
+<body>
+	<header class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>OMG Dance Collective</h1>
+			</div>
+		</div>
+	</header>
+	<main class="container-fluid">
+		<div id="intro" class="row">
+			<div class="col-sm-12">
+				<h1>Prova</h1>
+				<button id="start">start</button>
+				<button id="stop">stop</button>
+				<video autoplay controls loop>
+					<source src="//demosthenes.info/assets/videos/polina.webm" type="video/webm">
+					<source src="//demosthenes.info/assets/videos/polina.mp4" type="video/mp4">
+				</video>
+				<a href="#" class="movebutton">Let's move together!</a>
+			</div>
+		</div>
+		<div id="grid" class="row">
+			<div class="col-sm-12">
+				<h1>Altro titolo</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto aut cumque deleniti dolore doloremque, eius enim est fugit hic inventore iusto minima neque possimus quia quis quos totam vel!</p>
 
-	<body>
-	<button id="start">start</button>
-	<button id="stop">stop</button>
-	<video id="camera-preview"></video> 
+			</div>
+		</div>
+	</main>
 
-	<script src="https://www.webrtc-experiment.com/RecordRTC.js"> </script>
-	<script src="js/index.js"> </script>
-	</body>
+	<footer class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>OMG Dance Collective</h1>
+			</div>
+		</div>
+	</footer>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://www.webrtc-experiment.com/RecordRTC.js"> </script>
+<script src="js/index.js"> </script>
 </html>
