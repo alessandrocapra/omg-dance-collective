@@ -3,8 +3,7 @@
 // resize viewport
 function dynHeight() {
 	var footerHeight = $('footer').height();
-	var height = $(window).height() - footerHeight;
-	console.log(height);
+	var height = $(window).height();
 	$("main #intro").css('height', height);
 }
 
