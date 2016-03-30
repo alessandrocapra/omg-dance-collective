@@ -33,6 +33,16 @@ main {
   //background-color: #c65c0e;
   width: 100%;
 
+  #grid {
+    .row {
+    }
+    img {
+      width: 200px;
+      height:auto;
+      margin: 0;
+      padding: 0;
+    }
+  }
 
   video {
     position: absolute;
