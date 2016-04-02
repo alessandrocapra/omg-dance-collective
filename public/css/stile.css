@@ -5,7 +5,7 @@ body {
   font-weight: 400; }
 
 header {
-  height: 9vmax;
+  height: 9vw;
   width: 100%;
   position: fixed;
   top: 0;
@@ -18,9 +18,8 @@ header {
 
 main {
   position: absolute;
-  top: 80px;
+  top: 9vw;
   overflow: auto;
-  bottom: 50px;
   width: 100%; }
   main.container-fluid {
     margin: 0;
@@ -31,7 +30,7 @@ main {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 20vw;
+    width: 30vw;
     z-index: 1000;
     border: 1vmin solid #000;
     background: #fff;
@@ -40,10 +39,13 @@ main {
     text-align: center;
     font-size: 2vw;
     font-weight: 700;
-    padding: 3vw 2vw;
-    margin-left: -10vw; }
+    padding: 1vw 3vw;
+    margin-top: 20vh;
+    margin-left: -15vw;
+    transition: all 0.2s ease-in-out; }
     main #intro a#movebutton:hover {
-      text-decoration: none; }
+      text-decoration: none;
+      transform: scale(1.1); }
   main #grid img {
     width: 100%; }
   main video {
@@ -66,11 +68,11 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 6vmax;
+  height: 4.5vmax;
   padding: 1em; }
   footer h4 {
     margin: 0;
-    font-size: 3.3vw; }
+    font-size: 2.3vw; }
 
 /* Media queries */
 @media (max-device-width: 360px) {
