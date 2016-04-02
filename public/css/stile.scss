@@ -73,6 +73,32 @@ main {
       }
     }
   }
+
+  video {
+    &#background {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      background-size: cover;
+      overflow: hidden;
+    }
+
+    &#camera {
+      position: absolute;
+      right:3vw;
+      top: 3vw;
+      width:15vw;
+      height:15vw;
+      background-color: red;
+    }
+  }
 }
 
   a {
@@ -84,6 +110,10 @@ main {
 
     // BOH! Compare un'altra scrollbar!
     //padding-bottom: 10vh;
+
+    .row:last-child{
+      margin-bottom: 6vw;
+    }
 
     img {
       width: 100%;
@@ -100,21 +130,6 @@ main {
     .rotate-270 {
       transform: rotate(270deg);
     }
-  }
-
-  video {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    background-size: cover;
-    overflow: hidden;
   }
 }
 
