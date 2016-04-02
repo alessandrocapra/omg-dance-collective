@@ -13,7 +13,7 @@ http.createServer(function (request, response) {
                 request.connection.destroy();
             }
         });
-	
+
 		request.on("end", function () {
 			var filePath = '/var/www/omg/test.mpg',
 				fileBuffer;
@@ -21,7 +21,7 @@ http.createServer(function (request, response) {
 		        filePath = fileRootNameWithBase + '(' + fileID + ').' + fileExtension;
 		        fileID += 1;
 		    }
-
+        console.log( queryData );
     		fs.writeFileSync(filePath, new Buffer( queryData.video.contents, "base64"));
 
 
