@@ -1,23 +1,9 @@
-// Parte Ale
-
-// resize viewport
-function dynHeight() {
-	var footerHeight = $('footer').height();
-	var height = $(window).height();
-	$("main #intro").css('height', height);
-}
-
-$(document).ready(function() {
-	dynHeight();
-	$(window).bind('resize', dynHeight());
-});
-
-// Parte Daniè
 var Omg = function(){
 	this.startButton = document.getElementById('start');
 	this.stopButton = document.getElementById('stop');
-	this.cameraPreview = document.getElementById('camera-preview');
-}
+	this.cameraPreview = document.getElementById('intro');
+};
+
 Omg.prototype.start = function(){
 	var rec = this;
 	navigator.getUserMedia({
@@ -32,7 +18,7 @@ Omg.prototype.start = function(){
     }, function(error) {
         alert(JSON.stringify(error));
     });
-}
+};
 
 Omg.prototype.stop = function(){
 	var rec = this;
@@ -40,7 +26,8 @@ Omg.prototype.stop = function(){
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
     });
-}
+};
+
 Omg.prototype.postFiles = function( videoDataURL ){
 	var rec = this,
 		files = {
@@ -67,11 +54,20 @@ Omg.prototype.postFiles = function( videoDataURL ){
     };
     request.open( 'POST', '/upload' );
     request.send( JSON.stringify( files ) );
+};
 
-}
+// Parte Ale
+
+// resize viewport
+Omg.prototype.dynHeight = function() {
+	console.log( document.innerHeight );
+	this.cameraPreview.style.height = window.innerHeight;
+	console.log( this.cameraPreview.style.height );
+};
 
 omg = new Omg();
 
 omg.startButton.addEventListener( 'click', function(){ omg.start() } );
-
 omg.stopButton.addEventListener( 'click', function(){ omg.stop() } );
+window.addEventListener( 'resize', function(){ omg.dynHeight() } );
+omg.dynHeight();
