@@ -26,6 +26,14 @@ main {
     padding: 0; }
   main #intro button {
     display: none; }
+  main #intro a.pulsante {
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 700;
+    padding: 1vw 3vw; }
   main #intro a#movebutton {
     position: fixed;
     top: 50%;
@@ -33,22 +41,13 @@ main {
     width: 30vw;
     z-index: 1000;
     border: 1vmin solid #000;
-    background: #fff;
-    color: #000;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 2vw;
-    font-weight: 700;
-    padding: 1vw 3vw;
     margin-top: 20vh;
     margin-left: -15vw;
     transition: all 0.2s ease-in-out; }
     main #intro a#movebutton:hover {
       text-decoration: none;
       transform: scale(1.1); }
-  main #grid img {
-    width: 100%; }
-  main video {
+  main #intro video#background {
     position: relative;
     top: 0;
     left: 0;
@@ -61,6 +60,22 @@ main {
     z-index: -100;
     background-size: cover;
     overflow: hidden; }
+  main #intro video#camera {
+    position: absolute;
+    right: 3vw;
+    top: 3vw;
+    width: 15vw;
+    height: 15vw; }
+  main #grid .row:last-child {
+    margin-bottom: 6vw; }
+  main #grid img {
+    width: 100%; }
+  main #grid .rotate180 {
+    transform: rotate(180deg); }
+  main #grid .rotate90 {
+    transform: rotate(90deg); }
+  main #grid .rotate-270 {
+    transform: rotate(270deg); }
 
 footer {
   background-color: #fff;

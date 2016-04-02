@@ -1,6 +1,6 @@
 var Omg = function(){
 	this.button = document.getElementById('movebutton');
-	this.cameraPreview = document.getElementById('video');
+	this.cameraPreview = document.getElementById('camera');
 };
 
 Omg.prototype.init = function(){
