@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+/* Variables */
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400; }
@@ -10,7 +11,7 @@ header {
   top: 0;
   z-index: 1;
   background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); }
   header h1 {
     text-align: center;
     font-size: 5vw; }
@@ -22,14 +23,18 @@ main {
   bottom: 50px;
   width: 100%; }
   main.container-fluid {
-    margin: 0; }
+    margin: 0;
+    padding: 0; }
+  main #intro button {
+    display: none; }
+  main #intro a#movebutton {
+    position: fixed;
+    background: red;
+    padding: 3vw 2vw; }
   main #grid {
     background-color: rgba(255, 255, 255, 0.3); }
     main #grid img {
-      width: 200px;
-      height: auto;
-      margin: 0;
-      padding: 0; }
+      width: 100%; }
   main video {
     position: relative;
     top: 0;
@@ -46,7 +51,7 @@ main {
 
 footer {
   background-color: #fff;
-  border-top: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.2);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -55,5 +60,14 @@ footer {
   footer h4 {
     margin: 0;
     font-size: 3.3vw; }
+
+/* Media queries */
+@media (max-device-width: 360px) {
+  header h1 {
+    font-size: 4vh; }
+
+  main #grid img {
+    width: 100%;
+    margin-bottom: 1.5vh; } }
 
 /*# sourceMappingURL=stile.css.map */
