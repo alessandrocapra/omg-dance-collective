@@ -29,12 +29,23 @@ main {
     display: none; }
   main #intro a#movebutton {
     position: fixed;
-    background: red;
-    padding: 3vw 2vw; }
-  main #grid {
-    background-color: rgba(255, 255, 255, 0.3); }
-    main #grid img {
-      width: 100%; }
+    top: 50%;
+    left: 50%;
+    width: 20vw;
+    z-index: 1000;
+    border: 1vmin solid #000;
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 700;
+    padding: 3vw 2vw;
+    margin-left: -10vw; }
+    main #intro a#movebutton:hover {
+      text-decoration: none; }
+  main #grid img {
+    width: 100%; }
   main video {
     position: relative;
     top: 0;
