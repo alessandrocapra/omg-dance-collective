@@ -32,13 +32,9 @@ Omg.prototype.stop = function(){
 Omg.prototype.postFiles = function( videoDataURL ){
 	var rec = this,
 		files = {
-			video : {
-	    	    name: 'test.webm',
-		        type: 'video/webm',
-	            contents: videoDataURL
-	        }
-	    },
-	    request = new XMLHttpRequest();
+			video : videoDataURL
+    },
+    request = new XMLHttpRequest();
     rec.cameraPreview.src = ''; //add loading?
 
     request.onreadystatechange = function() {
@@ -57,16 +53,34 @@ Omg.prototype.postFiles = function( videoDataURL ){
     request.send( JSON.stringify( files ) );
 };
 
-// Parte Ale
-
-// resize viewport
 Omg.prototype.dynHeight = function() {
 	this.cameraPreview.style.height = window.innerHeight;
 };
 
+Omg.prototype.showGifs = function(){
+	var rec = this,
+		request = new XMLHttpRequest();
+		gifStr = []];
+
+		request.onreadystatechange = function() {
+			var gifs, gifStr = [];
+        if (request.readyState == 4 && request.status == 200) {
+          gifs = request.responseText;
+					for( var i in gifs ){
+						gifStr.push( '<div class="col-sm-2"><img src="' + gifs[i] '" alt=""></div>' );
+					}
+					document.getElementById('gif-container').innerHTML( gifStr.join() );
+        }
+    };
+    request.open( 'GET', 'http://localhost:8080/gifs' );
+    request.send( JSON.stringify( files ) );
+
+}
 omg = new Omg();
 
 omg.startButton.addEventListener( 'click', function(){ omg.start() } );
 omg.stopButton.addEventListener( 'click', function(){ omg.stop() } );
 window.addEventListener( 'resize', function(){ omg.dynHeight() } );
 omg.dynHeight();
+
+omg.showGif();
