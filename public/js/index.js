@@ -7,7 +7,7 @@ var Omg = function(){
 Omg.prototype.start = function(){
 	var rec = this;
 	navigator.getUserMedia({
-        audio: true,
+        audio: false,
         video: true
     }, function(stream) {
         rec.cameraPreview.src = window.URL.createObjectURL(stream);
@@ -15,6 +15,7 @@ Omg.prototype.start = function(){
         rec.recordVideo = RecordRTC(stream, {
             type: 'video'
         });
+				rec.recordVideo.startRecording();
     }, function(error) {
         alert(JSON.stringify(error));
     });
@@ -52,7 +53,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
 	        document.body.appendChild(h2);
         }
     };
-    request.open( 'POST', '/upload' );
+    request.open( 'POST', 'http://localhost:8080' );
     request.send( JSON.stringify( files ) );
 };
 
@@ -60,9 +61,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
 
 // resize viewport
 Omg.prototype.dynHeight = function() {
-	console.log( document.innerHeight );
 	this.cameraPreview.style.height = window.innerHeight;
-	console.log( this.cameraPreview.style.height );
 };
 
 omg = new Omg();
