@@ -1,24 +1,34 @@
 var Omg = function(){
-	this.startButton = document.getElementById('start');
-	this.stopButton = document.getElementById('stop');
-	this.cameraPreview = document.getElementById('intro');
+	this.button = document.getElementById('movebutton');
+	this.cameraPreview = document.getElementById('video');
 };
 
-Omg.prototype.start = function(){
+Omg.prototype.init = function(){
 	var rec = this;
+	rec.button.onclick = function(){ rec.start(); };
+	rec.button.innerHTML = 'Start Recording';
 	navigator.getUserMedia({
         audio: false,
         video: true
     }, function(stream) {
-        rec.cameraPreview.src = window.URL.createObjectURL(stream);
-        rec.cameraPreview.play();
-        rec.recordVideo = RecordRTC(stream, {
-            type: 'video'
-        });
-				rec.recordVideo.startRecording();
-    }, function(error) {
-        alert(JSON.stringify(error));
-    });
+		rec.cameraPreview.src = window.URL.createObjectURL(stream);
+		rec.cameraPreview.play();
+		rec.recordVideo = RecordRTC(stream, {
+				type: 'video'
+		});
+	}, function(error) {
+			alert(JSON.stringify(error));
+	});
+
+}
+
+Omg.prototype.start = function(){
+	var rec = this;
+	rec.recordVideo.startRecording();
+	setTimeout( function(){
+		rec.stop();
+	}, 4000 );
+
 };
 
 Omg.prototype.stop = function(){
@@ -26,6 +36,8 @@ Omg.prototype.stop = function(){
 	rec.recordVideo.stopRecording();
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
+				rec.button.onclick = function(){ rec.init(); };
+				rec.button.innerHTML = 'Let\'s move together!';
     });
 };
 
@@ -60,27 +72,28 @@ Omg.prototype.dynHeight = function() {
 Omg.prototype.showGifs = function(){
 	var rec = this,
 		request = new XMLHttpRequest();
-		gifStr = []];
+		gifStr = [];
 
 		request.onreadystatechange = function() {
 			var gifs, gifStr = [];
         if (request.readyState == 4 && request.status == 200) {
-          gifs = request.responseText;
+          gifs = JSON.parse(request.responseText);
+					console.log( gifs );
 					for( var i in gifs ){
-						gifStr.push( '<div class="col-sm-2"><img src="' + gifs[i] '" alt=""></div>' );
+						if( gifs.hasOwnProperty( i ) )
+							gifStr.push( '<div class="col-sm-2"><img src="gif/' + gifs[i] + '" alt=""></div>' );
 					}
-					document.getElementById('gif-container').innerHTML( gifStr.join() );
+					document.getElementById('gif-container').innerHTML = gifStr.join('');
         }
     };
     request.open( 'GET', 'http://localhost:8080/gifs' );
-    request.send( JSON.stringify( files ) );
+    request.send( );
 
 }
 omg = new Omg();
 
-omg.startButton.addEventListener( 'click', function(){ omg.start() } );
-omg.stopButton.addEventListener( 'click', function(){ omg.stop() } );
+omg.button.onclick = function(){ omg.init() };
 window.addEventListener( 'resize', function(){ omg.dynHeight() } );
 omg.dynHeight();
 
-omg.showGif();
+omg.showGifs();

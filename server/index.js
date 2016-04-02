@@ -3,6 +3,8 @@ var fs = require('fs'),
  	http = require('http');
 
 http.createServer( function( request, response ){
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+
 	if(request.method == 'POST') {
 		var queryData = "";
 
@@ -74,11 +76,10 @@ http.createServer( function( request, response ){
 		});
 	}
 	else{
-    switch( require('url').parse(request.url) ){
-        case 'gifs':
-
+    switch( require('url').parse(request.url).path ){
+        case '/gifs':
+          var gifDir = process.cwd() + '/../public/gif/';
           fs.readdir( gifDir, function( err, files ){
-            var gifDir = process.cwd() + '/../public/gif/';
             if( err ){
               console.log( err );
               response.writeHead( 500, {'Content-Type': 'text/plain'});
@@ -89,7 +90,7 @@ http.createServer( function( request, response ){
             response.writeHead( 200, {
               'Content-Type': 'text/json'
             });
-            response.end( files );
+            response.end( JSON.stringify( files ) );
           });
             break;
 
@@ -98,7 +99,7 @@ http.createServer( function( request, response ){
           response.writeHead( 200, {
             'Content-Type': 'text/json'
           });
-          response.end( files );
+          response.end();
           break;
       }
   }
