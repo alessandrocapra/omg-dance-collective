@@ -85,7 +85,6 @@ Omg.prototype.showGifs = function(){
 			var gifs, gifStr = [];
         if (request.readyState == 4 && request.status == 200) {
           gifs = JSON.parse(request.responseText);
-					console.log( gifs );
 					for( var i in gifs ){
 						if( gifs.hasOwnProperty( i ) ){
 							gifStr.push( rec.getGifStr( gifs[i] ) );
