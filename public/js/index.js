@@ -2,7 +2,7 @@ var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('gif-container');
-	this.serverUrl = 'http://www.omgdancecollective.gq/:8080';
+	this.serverUrl = 'http://www.omgdancecollective.gq:8080';
 	this.wsUrl = 'ws://www.omgdancecollective.gq:8080';
 };
 
