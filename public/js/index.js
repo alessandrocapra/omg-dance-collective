@@ -10,17 +10,18 @@ var Omg = function(){
 Omg.prototype.init = function(){
 	var rec = this;
 
-	rec.stream = navigator.getUserMedia({
-        audio: false,
-        video: true
-    }, function(stream) {
-			rec.button.onclick = function(){ rec.start(); };
-			rec.button.innerHTML = 'Start Recording';
-			rec.cameraPreview.src = window.URL.createObjectURL(stream);
-			rec.cameraPreview.play();
-			rec.recordVideo = RecordRTC(stream, {
-					type: 'video'
-			});
+	navigator.getUserMedia({
+    audio: false,
+    video: true
+  }, function(stream) {
+		rec.stream = stream;
+		rec.button.onclick = function(){ rec.start(); };
+		rec.button.innerHTML = 'Start Recording';
+		rec.cameraPreview.src = window.URL.createObjectURL(stream);
+		rec.cameraPreview.play();
+		rec.recordVideo = RecordRTC(stream, {
+				type: 'video'
+		});
 	}, function(error) {
 		alert( error.message );
 	});
