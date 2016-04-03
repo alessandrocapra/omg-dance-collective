@@ -2,6 +2,8 @@ var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('gif-container');
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080';
 };
 
 Omg.prototype.init = function(){
@@ -65,7 +67,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
             var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
         }
     };
-    request.open( 'POST', 'http://localhost:8080' );
+    request.open( 'POST', this.serverUrl );
     request.send( JSON.stringify( files ) );
 };
 
@@ -91,7 +93,7 @@ Omg.prototype.showGifs = function(){
 					rec.gifContainer.innerHTML = gifStr.join('');
         }
     };
-    request.open( 'GET', 'http://localhost:8080/gifs' );
+    request.open( 'GET', this.serverUrl + '/gifs' );
     request.send( );
 };
 
@@ -105,7 +107,7 @@ Omg.prototype.startWSClient = function(){
 	var rec = this, connection;
 	if( !'WebSocket' in window )
 		return false;
-	connection = new WebSocket('ws://localhost:8080', 'gif');
+	connection = new WebSocket( this.wsUrl, 'gif' );
 	connection.onmessage = function(e){
 	   rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
 	}
