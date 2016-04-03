@@ -14,7 +14,7 @@ var fs = require('fs'),
 
   		request.on( 'data', function( data ) {
           queryData += data;
-          if(queryData.length > 1e6) {
+          if( queryData.length > 1e7 ) { //around 10MBs
               console.log( 'request too large' );
               queryData = "";
               response.writeHead(413, {'Content-Type': 'text/plain'});
