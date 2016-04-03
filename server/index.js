@@ -42,7 +42,8 @@ var fs = require('fs'),
             for( var i in files ){
               fileNames.push( parseInt( files[i].split( '.' )[0] ) );
             }
-            fileName = Math.max.apply( null, fileNames ) + 1;
+            if( fileNames.length )
+              fileName = Math.max.apply( null, fileNames ) + 1;
             if( !fileName ){
               fileName = 1;
             }
