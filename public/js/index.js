@@ -10,7 +10,7 @@ var Omg = function(){
 Omg.prototype.init = function(){
 	var rec = this;
 
-	navigator.getUserMedia({
+	rec.stream = navigator.getUserMedia({
         audio: false,
         video: true
     }, function(stream) {
@@ -47,8 +47,12 @@ Omg.prototype.start = function(){
 };
 
 Omg.prototype.stop = function(){
-	var rec = this;
+	var rec = this, tracks = rec.stream.getTracks();
 	rec.recordVideo.stopRecording();
+	for( var i in tracks ){
+		if( tracks.hasOwnProperty( i ) )
+			tracks[i].stop();
+	}
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
 				rec.button.onclick = function(){ rec.init(); };
