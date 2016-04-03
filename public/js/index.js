@@ -75,13 +75,15 @@ Omg.prototype.showGifs = function(){
 		gifStr = [];
 
 		request.onreadystatechange = function() {
-			var gifs, gifStr = [];
+			var gifs, rand, gifStr = [];
         if (request.readyState == 4 && request.status == 200) {
           gifs = JSON.parse(request.responseText);
 					console.log( gifs );
 					for( var i in gifs ){
-						if( gifs.hasOwnProperty( i ) )
-							gifStr.push( '<div class="col-sm-2"><img src="gif/' + gifs[i] + '" alt=""></div>' );
+						if( gifs.hasOwnProperty( i ) ){
+							rand = Math.floor( (Math.random() * 5));
+							gifStr.push( '<div class="col-sm-2 rotate' + rand * 90  + '"><img src="gif/' + gifs[i] + '" alt=""></div>' );
+						}
 					}
 					document.getElementById('gif-container').innerHTML = gifStr.join('');
         }

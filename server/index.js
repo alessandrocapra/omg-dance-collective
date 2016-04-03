@@ -21,8 +21,8 @@ http.createServer( function( request, response ){
 
 		request.on( 'end', function () {
 			var
-        videoDir = process.cwd() + '/../video/',
-        gifDir = process.cwd() + '/../public/gif/',
+        videoDir = process.cwd() + '/video/',
+        gifDir = process.cwd() + '/public/gif/',
         fileNames = [],
         fileName,
         filePath,
@@ -78,7 +78,7 @@ http.createServer( function( request, response ){
 	else{
     switch( require('url').parse(request.url).path ){
         case '/gifs':
-          var gifDir = process.cwd() + '/../public/gif/';
+          var gifDir = process.cwd() + '/public/gif/';
           fs.readdir( gifDir, function( err, files ){
             if( err ){
               console.log( err );
