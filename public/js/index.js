@@ -8,19 +8,20 @@ var Omg = function(){
 
 Omg.prototype.init = function(){
 	var rec = this;
-	rec.button.onclick = function(){ rec.start(); };
-	rec.button.innerHTML = 'Start Recording';
+
 	navigator.getUserMedia({
         audio: false,
         video: true
     }, function(stream) {
-		rec.cameraPreview.src = window.URL.createObjectURL(stream);
-		rec.cameraPreview.play();
-		rec.recordVideo = RecordRTC(stream, {
-				type: 'video'
-		});
+			rec.button.onclick = function(){ rec.start(); };
+			rec.button.innerHTML = 'Start Recording';
+			rec.cameraPreview.src = window.URL.createObjectURL(stream);
+			rec.cameraPreview.play();
+			rec.recordVideo = RecordRTC(stream, {
+					type: 'video'
+			});
 	}, function(error) {
-			alert(JSON.stringify(error));
+		alert( error.message );
 	});
 
 }
