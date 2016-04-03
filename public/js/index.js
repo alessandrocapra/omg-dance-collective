@@ -50,9 +50,13 @@ Omg.prototype.start = function(){
 Omg.prototype.stop = function(){
 	var rec = this, tracks = rec.stream.getTracks();
 	rec.recordVideo.stopRecording();
-	for( var i in tracks ){
-		if( tracks.hasOwnProperty( i ) )
-			tracks[i].stop();
+	if( typeof rec.stream.stop === 'function' )
+		rec.stream.stop();
+	else{
+		for( var i in tracks ){
+			if( tracks.hasOwnProperty( i ) )
+				tracks[i].stop();
+		}
 	}
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
