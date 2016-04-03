@@ -1,6 +1,7 @@
 var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
+	this.gifContainer = document.getElementById('gif-container');
 };
 
 Omg.prototype.init = function(){
@@ -23,11 +24,21 @@ Omg.prototype.init = function(){
 }
 
 Omg.prototype.start = function(){
-	var rec = this;
+	var rec = this,
+		counter = 4,
+		func = function(){
+			rec.button.innerHTML = 'Dance!! ' + counter;
+			counter--;
+			if( !counter ){
+				rec.stop();
+				clearTimeout( timeout );
+			}
+			else {
+				timeout = setTimeout( func , 1000 );
+			}
+		};
 	rec.recordVideo.startRecording();
-	setTimeout( function(){
-		rec.stop();
-	}, 4000 );
+	timeout = setTimeout( func , 1000 );
 
 };
 
@@ -51,14 +62,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            var href = location.href.substr(0, location.href.lastIndexOf('/') + 1),
-            	h2;
-	        rec.cameraPreview.src = href + 'uploads/' + request.responseText;
-	        rec.cameraPreview.play();
-
-	        h2 = document.createElement('h2');
-	        h2.innerHTML = '<a href="' + rec.cameraPreview.src + '">' + rec.cameraPreview.src + '</a>';
-	        document.body.appendChild(h2);
+            var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
         }
     };
     request.open( 'POST', 'http://localhost:8080' );
@@ -75,22 +79,36 @@ Omg.prototype.showGifs = function(){
 		gifStr = [];
 
 		request.onreadystatechange = function() {
-			var gifs, rand, gifStr = [];
+			var gifs, gifStr = [];
         if (request.readyState == 4 && request.status == 200) {
           gifs = JSON.parse(request.responseText);
 					console.log( gifs );
 					for( var i in gifs ){
 						if( gifs.hasOwnProperty( i ) ){
-							rand = Math.floor( (Math.random() * 5));
-							gifStr.push( '<div class="col-sm-2 rotate' + rand * 90  + '"><img src="gif/' + gifs[i] + '" alt=""></div>' );
+							gifStr.push( rec.getGifStr( gifs[i] ) );
 						}
 					}
-					document.getElementById('gif-container').innerHTML = gifStr.join('');
+					rec.gifContainer.innerHTML = gifStr.join('');
         }
     };
     request.open( 'GET', 'http://localhost:8080/gifs' );
     request.send( );
+};
 
+Omg.prototype.getGifStr = function( fileName ){
+	var rec = this,
+		rand = Math.floor( (Math.random() * 5));
+	return '<div class="col-sm-2 rotate' + rand * 90  + '"><img src="gif/' + fileName + '" alt=""></div>';
+};
+
+Omg.prototype.startWSClient = function(){
+	var rec = this, connection;
+	if( !'WebSocket' in window )
+		return false;
+	connection = new WebSocket('ws://localhost:8080', 'gif');
+	connection.onmessage = function(e){
+	   rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
+	}
 }
 omg = new Omg();
 
@@ -99,3 +117,4 @@ window.addEventListener( 'resize', function(){ omg.dynHeight() } );
 omg.dynHeight();
 
 omg.showGifs();
+omg.startWSClient();
