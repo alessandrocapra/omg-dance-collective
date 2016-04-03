@@ -19,8 +19,10 @@ Omg.prototype.init = function(){
 		rec.button.innerHTML = 'Start Recording';
 		rec.cameraPreview.src = window.URL.createObjectURL(stream);
 		rec.cameraPreview.play();
-		rec.recordVideo = RecordRTC(stream, {
-				type: 'video'
+		rec.recordVideo = RecordRTC(stream,  {
+		   type: 'gif',
+	    frameRate: 200,
+	    quality: 8
 		});
 	}, function(error) {
 		alert( error.message );
