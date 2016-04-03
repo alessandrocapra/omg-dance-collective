@@ -7,7 +7,7 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    response.setHeader('Access-Control-Allow-Origin', 'http://www.omgdancecollective.gq');
 
   	if(request.method == 'POST') {
   		var queryData = "";
