@@ -93,7 +93,7 @@ var fs = require('fs'),
             break;
 
             case '/ws':
-              response.writeHead( 200, {
+              response.writeHead( 404, {
                   'Content-Type': 'text/json'
                 });
                 response.end();
