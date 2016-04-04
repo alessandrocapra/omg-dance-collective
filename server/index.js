@@ -7,7 +7,7 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    response.setHeader('Access-Control-Allow-Origin', 'http://www.omgdancecollective.gq');
+    response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
     switch( require('url').parse(request.url).path ){
       case '/video':
       	if(request.method == 'POST') {
