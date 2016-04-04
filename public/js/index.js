@@ -3,8 +3,8 @@ var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('gif-container');
-	this.serverUrl = 'http://www.omgdancecollective.gq:8080';
-	this.wsUrl = 'ws://www.omgdancecollective.gq:8080';
+	this.serverUrl = 'https://www.omgdancecollective.gq';
+	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
 };
 
 Omg.prototype.init = function(){
@@ -73,14 +73,13 @@ Omg.prototype.postFiles = function( videoDataURL ){
 			video : videoDataURL
     },
     request = new XMLHttpRequest();
-    rec.cameraPreview.src = ''; //add loading?
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
         }
     };
-    request.open( 'POST', this.serverUrl );
+    request.open( 'POST', this.serverUrl + '/video' );
     request.send( JSON.stringify( files ) );
 };
 
