@@ -25,7 +25,10 @@ Omg.prototype.init = function(){
 	    quality: 8
 		});
 	}, function(error) {
-		alert( error.message );
+		if( error.message )
+			alert( error.message );
+		else
+			alert( 'browser/webcam not supported' );
 	});
 
 }
