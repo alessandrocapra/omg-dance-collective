@@ -111,7 +111,7 @@ Omg.prototype.showGifs = function(){
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
 		rand = Math.floor( (Math.random() * 5));
-	return '<div class="col-sm-2 rotate' + rand * 90  + '"><img src="gif/' + fileName + '" alt=""></div>';
+	return '<div class="col-sm-3 rotate' + rand * 90  + '"><img src="gif/' + fileName + '" alt=""></div>';
 };
 
 Omg.prototype.startWSClient = function(){
@@ -124,8 +124,14 @@ Omg.prototype.startWSClient = function(){
 	}
 }
 omg = new Omg();
+if( navigator.getUserMedia )
+	omg.button.onclick = function(){ omg.init() };
+else{
+	omg.button.parentElement.removeChild( omg.button );
+	document.getElementByTagName('header')[0].innerHTML = '<div class="alert alert-danger">Browser not supported</div>' 
+		+ document.getElementByTagName('header')[0].innerHTML
+}
 
-omg.button.onclick = function(){ omg.init() };
 window.addEventListener( 'resize', function(){ omg.dynHeight() } );
 omg.dynHeight();
 
