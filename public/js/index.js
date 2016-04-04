@@ -12,7 +12,7 @@ Omg.prototype.init = function(){
 
 	navigator.getUserMedia({
     audio: false,
-    video: true
+    video: { width: 300, height: 300 }
   }, function(stream) {
 		rec.stream = stream;
 		rec.button.onclick = function(){ rec.start(); };
