@@ -98,7 +98,8 @@ var fs = require('fs'),
               'Content-Type': 'text/json'
             });
             response.end('not found');
-            break;       
+            break;    
+      }   
     
 }),
 
