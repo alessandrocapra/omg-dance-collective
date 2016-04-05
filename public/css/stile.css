@@ -23,9 +23,6 @@ main {
   position: absolute;
   overflow: auto;
   width: 100%; }
-  main.container-fluid {
-    margin: 0;
-    padding: 0; }
   main #intro button {
     display: none; }
   main #intro a.pulsante {
@@ -50,28 +47,33 @@ main {
   main #intro video#background {
     position: relative;
     top: 0;
-    text-align: center;
-    left: 10vw;
     min-height: 100vh;
     width: auto;
     height: auto;
     z-index: -100;
-    overflow: hidden; }
+    overflow: hidden;
+    border: 1px solid #0000ff;
+    display: block;
+    margin: 0 auto; }
   main #intro video#camera {
     position: absolute;
     right: 3vw;
     top: 3vw;
     height: 35%; }
-  main #grid .row:last-child {
-    margin-bottom: 6vw; }
-  main #grid img {
-    width: 100%; }
-  main #grid .rotate180 {
-    transform: rotate(180deg); }
-  main #grid .rotate90 {
-    transform: rotate(90deg); }
-  main #grid .rotate-270 {
-    transform: rotate(270deg); }
+  main #grid {
+    padding-top: 10vh; }
+    main #grid .row {
+      margin: 2vw 6vw; }
+    main #grid .row:last-child {
+      margin-bottom: 6vw; }
+    main #grid img {
+      width: 100%; }
+    main #grid .rotate180 {
+      transform: rotate(180deg); }
+    main #grid .rotate90 {
+      transform: rotate(90deg); }
+    main #grid .rotate-270 {
+      transform: rotate(270deg); }
 
 footer {
   background-color: #fff;
@@ -93,7 +95,10 @@ footer {
       font-size: 4vh; }
 
   main #intro video#background {
-    left: 0; }
+    left: 0;
+    min-height: 100vh;
+    width: auto;
+    height: auto; }
   main #intro a.pulsante {
     font-size: 4vw;
     padding: 3vw 3vw; }

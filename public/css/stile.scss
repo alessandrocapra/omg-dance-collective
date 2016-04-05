@@ -37,10 +37,10 @@ main {
   width: 100%;
   //padding-bottom: 30vw;
 
-  &.container-fluid {
-    margin: 0;
-    padding: 0;
-  }
+  //&.container-fluid {
+  //  margin: 0;
+  //  padding: 0;
+  //}
 
   #intro {
 
@@ -83,16 +83,14 @@ main {
       &#background {
         position: relative;
         top: 0;
-        text-align: center;
-        left: 10vw;
-        //margin-left:-40vw;
-        //min-width: 100vw;
         min-height: 100vh;
         width: auto;
         height: auto;
         z-index: -100;
-        //background-size: cover;
         overflow: hidden;
+        border:1px solid $blue;
+        display: block;
+        margin: 0 auto;
       }
 
       &#camera {
@@ -107,10 +105,14 @@ main {
   }
 
   #grid {
-    //background-color: rgba(255,255,255,0.3);
+    padding-top:10vh;
 
     // BOH! Compare un'altra scrollbar!
     //padding-bottom: 10vh;
+
+    .row {
+      margin:2vw 6vw;
+    }
 
     .row:last-child{
       margin-bottom: 6vw;
@@ -168,7 +170,11 @@ footer {
     #intro {
       video {
         &#background {
-          left:0;
+          left: 0;
+          //width: 100vw;
+          min-height:100vh;
+          width:auto;
+          height:auto;
         }
       }
 
