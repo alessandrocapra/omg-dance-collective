@@ -3,6 +3,7 @@
 /* Variables */
 $phone-breakpoint: 360px;
 $tablet-breakpoint: 768px;
+$blue: #0000ff;
 
 body {
   font-family: 'Lato', sans-serif;
@@ -10,24 +11,28 @@ body {
 }
 
 header {
-  height: 9vw;
+  height: 4.5vmax;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 1;
   background-color: #fff;
   //border-bottom:1px solid rgba(0,0,0,0.3);
-  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+  //box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 
   h1 {
     text-align: center;
-    font-size: 5vw;
+    margin: 0;
+    padding: 2vh;
+    font-size: 2.5vw;
+    font-weight:700;
+    color: $blue;
   }
 }
 
 main {
   position: absolute;
-  top:9vw;
+  //top:9vw;
   overflow: auto;
   width: 100%;
   //padding-bottom: 30vw;
@@ -35,12 +40,11 @@ main {
   &.container-fluid {
   margin: 0;
   padding: 0;
-}
 
-#intro {
+  #intro {
 
   button {
-  display: none;
+    display: none;
   }
 
   a {
@@ -78,9 +82,10 @@ main {
     &#background {
       position: relative;
       top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      left: 10vw;
+      //margin-left:-40vw;
+      //min-width: 100vw;
+      min-height: 100vh;
       width: auto;
       height: auto;
       z-index: -100;
@@ -98,6 +103,8 @@ main {
     }
   }
 }
+  }
+
 
   a {
 
@@ -134,7 +141,7 @@ main {
 footer {
   background-color: #fff;
   //border-top: 2px solid rgba(0,0,0,0.3);
-  box-shadow: 0 -3px 3px rgba(0,0,0,0.2);
+  //box-shadow: 0 -3px 3px rgba(0,0,0,0.2);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -145,6 +152,7 @@ footer {
   h4 {
     margin: 0;
     font-size: 2.3vw;
+    color: $blue;
   }
 
 }
@@ -161,8 +169,14 @@ footer {
   }
 
   main {
-
     #intro {
+      video {
+        &#background {
+          width: 100vw;
+          height: 50vh;
+        }
+      }
+
       a {
         &.pulsante {
           font-size: 4vw;
@@ -174,6 +188,8 @@ footer {
         }
       }
     }
+  }
+
 
     #grid {
       img {
