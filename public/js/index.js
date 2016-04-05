@@ -6,8 +6,8 @@ var Omg = function(){
 	this.background = document.getElementById('background');
 	this.serverUrl = 'https://www.omgdancecollective.gq';
 	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	this.serverUrl = 'http://localhost:8080';
-	this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'http://localhost:8080';
+	//this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 };
