@@ -50,6 +50,7 @@ main {
   main #intro video#background {
     position: relative;
     top: 0;
+    text-align: center;
     left: 10vw;
     min-height: 100vh;
     width: auto;
@@ -91,15 +92,15 @@ footer {
     header h1 {
       font-size: 4vh; }
 
-  #intro video#background {
+  main #intro video#background {
     left: 0; }
-  #intro a.pulsante {
+  main #intro a.pulsante {
     font-size: 4vw;
     padding: 3vw 3vw; }
-  #intro a#movebutton {
+  main #intro a#movebutton {
     width: 60vw;
     margin-left: -30vw; }
-  #intro #grid img {
+  main #grid img {
     width: 100%;
     margin-bottom: 1.5vh; }
 

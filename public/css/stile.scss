@@ -38,76 +38,72 @@ main {
   //padding-bottom: 30vw;
 
   &.container-fluid {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+  }
 
   #intro {
 
-  button {
-    display: none;
-  }
-
-  a {
-    &.pulsante {
-      background: #fff;
-      color: #000;
-      text-transform: uppercase;
-      text-align: center;
-      font-size: 2vw;
-      font-weight: 700;
-      padding: 1vw 3vw;
-
+    button {
+      display: none;
     }
 
-    &#movebutton {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width:30vw;
-      z-index:1000;
-      border: 1vmin solid #000;
+    a {
+      &.pulsante {
+        background: #fff;
+        color: #000;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 2vw;
+        font-weight: 700;
+        padding: 1vw 3vw;
 
-      margin-top:20vh;
-      margin-left:-15vw;
-      //transition: all 0.2s ease-in-out;
+      }
 
-      &:hover {
-        text-decoration: none;
-        //transform: scale(1.1);
+      &#movebutton {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width:30vw;
+        z-index:1000;
+        border: 1vmin solid #000;
+
+        margin-top:20vh;
+        margin-left:-15vw;
+        //transition: all 0.2s ease-in-out;
+
+        &:hover {
+          text-decoration: none;
+          //transform: scale(1.1);
+        }
       }
     }
-  }
 
-  video {
-    &#background {
-      position: relative;
-      top: 0;
-      left: 10vw;
-      //margin-left:-40vw;
-      //min-width: 100vw;
-      min-height: 100vh;
-      width: auto;
-      height: auto;
-      z-index: -100;
-      //background-size: cover;
-      overflow: hidden;
+    video {
+      &#background {
+        position: relative;
+        top: 0;
+        text-align: center;
+        left: 10vw;
+        //margin-left:-40vw;
+        //min-width: 100vw;
+        min-height: 100vh;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        //background-size: cover;
+        overflow: hidden;
+      }
+
+      &#camera {
+        position: absolute;
+        right:3vw;
+        top: 3vw;
+        //width:15vw;
+        height:35%;
+        //background-color: red;
+      }
     }
-
-    &#camera {
-      position: absolute;
-      right:3vw;
-      top: 3vw;
-      //width:15vw;
-      height:35%;
-      //background-color: red;
-    }
-  }
-}
-  }
-
-
-  a {
-
   }
 
   #grid {
@@ -172,8 +168,7 @@ footer {
     #intro {
       video {
         &#background {
-          width: 100vw;
-          height: 50vh;
+          left:0;
         }
       }
 
@@ -188,8 +183,6 @@ footer {
         }
       }
     }
-  }
-
 
     #grid {
       img {
