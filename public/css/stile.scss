@@ -65,11 +65,11 @@ main {
 
       margin-top:20vh;
       margin-left:-15vw;
-      transition: all 0.2s ease-in-out;
+      //transition: all 0.2s ease-in-out;
 
       &:hover {
         text-decoration: none;
-        transform: scale(1.1);
+        //transform: scale(1.1);
       }
     }
   }
@@ -79,14 +79,12 @@ main {
       position: relative;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
       min-width: 100%;
       min-height: 100%;
       width: auto;
       height: auto;
       z-index: -100;
-      background-size: cover;
+      //background-size: cover;
       overflow: hidden;
     }
 
@@ -154,6 +152,8 @@ footer {
 /* Media queries */
 @media (max-device-width: $phone-breakpoint) {
   header {
+    height: 18vw;
+
     h1 {
       font-size: 4vh;
     }
@@ -161,11 +161,33 @@ footer {
   }
 
   main {
+
+    #intro {
+      a {
+        &.pulsante {
+          font-size: 4vw;
+          padding: 3vw 3vw;
+        }
+        &#movebutton {
+          width: 60vw;
+          margin-left: -30vw;
+        }
+      }
+    }
+
     #grid {
       img {
         width:100%;
         margin-bottom:1.5vh;
       }
+    }
+  }
+
+  footer {
+    height: 8vmax;
+
+    h4 {
+      font-size: 4vw;
     }
   }
 }
