@@ -42,23 +42,18 @@ main {
     z-index: 1000;
     border: 1vmin solid #000;
     margin-top: 20vh;
-    margin-left: -15vw;
-    transition: all 0.2s ease-in-out; }
+    margin-left: -15vw; }
     main #intro a#movebutton:hover {
-      text-decoration: none;
-      transform: scale(1.1); }
+      text-decoration: none; }
   main #intro video#background {
     position: relative;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
     z-index: -100;
-    background-size: cover;
     overflow: hidden; }
   main #intro video#camera {
     position: absolute;
@@ -90,11 +85,24 @@ footer {
 
 /* Media queries */
 @media (max-device-width: 360px) {
-  header h1 {
-    font-size: 4vh; }
+  header {
+    height: 18vw; }
+    header h1 {
+      font-size: 4vh; }
 
+  main #intro a.pulsante {
+    font-size: 4vw;
+    padding: 3vw 3vw; }
+  main #intro a#movebutton {
+    width: 60vw;
+    margin-left: -30vw; }
   main #grid img {
     width: 100%;
-    margin-bottom: 1.5vh; } }
+    margin-bottom: 1.5vh; }
+
+  footer {
+    height: 8vmax; }
+    footer h4 {
+      font-size: 4vw; } }
 
 /*# sourceMappingURL=stile.css.map */
