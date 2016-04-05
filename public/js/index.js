@@ -6,8 +6,8 @@ var Omg = function(){
 	this.background = document.getElementById('background');
 	this.serverUrl = 'https://www.omgdancecollective.gq';
 	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	this.serverUrl = 'http://localhost:8080';
-	this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'http://localhost:8080';
+	//this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 };
@@ -25,7 +25,7 @@ Omg.prototype.init = function(){
 		rec.cameraPreview.src = window.URL.createObjectURL(stream);
 		rec.cameraPreview.play();
 		rec.recordVideo = RecordRTC(stream,  {
-		   	type: 'gif',
+		   	type: 'webm',
 		   	video: rec.dimensions,
     		canvas: rec.dimensions,
 	    	frameRate: 150,
@@ -42,7 +42,7 @@ Omg.prototype.init = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 1,
+		counter = 3,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ' + counter;
 			rec.background.currentTime = 0;
@@ -65,6 +65,7 @@ Omg.prototype.stop = function(){
 		tracks = rec.stream.getTracks(),
 		parent = rec.button.parentElement;
 
+	rec.cameraPreview.style.display = 'none';
 	parent.removeChild( rec.button );
 	for( var i in parent.children ){
 		if( parent.children.hasOwnProperty( i ) )
@@ -154,7 +155,7 @@ Omg.prototype.scrollForNewGifs = function(){
 
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
-		rand = Math.floor( (Math.random() * 1));
+		rand = Math.floor( (Math.random() * 2));
 	return '<div class="col-sm-3 rotate' + rand * 180  + '"><img src="gif/' + fileName + '" alt=""></div>';
 };
 
