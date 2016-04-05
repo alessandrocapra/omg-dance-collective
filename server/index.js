@@ -1,5 +1,6 @@
 var fs = require('fs'),
   exec = require('child_process').exec,
+  url = require('url'),
   WebSocketServer = require('websocket').server
  	http = require('http'),
 
@@ -7,8 +8,9 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
-    switch( require('url').parse(request.url).path ){
+    //response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
+    response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    switch( url.parse(request.url).pathname ){
       case '/video':
       	if(request.method == 'POST') {
       		var queryData = "";
@@ -33,6 +35,7 @@ var fs = require('fs'),
               gifPath,
       				fileBuffer;
               fs.readdir( gifDir, function( err, files ){
+
                 if( err ){
                   console.log( err );
                   response.writeHead( 500, {'Content-Type': 'text/plain'});
@@ -76,7 +79,8 @@ var fs = require('fs'),
         break;
 
           case '/gifs':
-            var gifDir = process.cwd() + '/public/gif/';
+            var gifDir = process.cwd() + '/public/gif/',
+              start = parseInt( url.parse(request.url,true).query.start );
             fs.readdir( gifDir, function( err, files ){
               if( err ){
                 console.log( err );
@@ -88,7 +92,7 @@ var fs = require('fs'),
               response.writeHead( 200, {
                 'Content-Type': 'text/json'
               });
-              response.end( JSON.stringify( files ) );
+              response.end( JSON.stringify( files.slice(  start, start + 16 ) ) );
             });
             break;
 
@@ -104,9 +108,9 @@ var fs = require('fs'),
               'Content-Type': 'text/json'
             });
             response.end('not found');
-            break;    
-      }   
-    
+            break;
+      }
+
 }),
 
 wsServer = new WebSocketServer({

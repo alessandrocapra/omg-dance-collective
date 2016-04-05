@@ -3,8 +3,13 @@ var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('gif-container');
+	this.background = document.getElementById('background');
 	this.serverUrl = 'https://www.omgdancecollective.gq';
 	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080/ws';
+	this.dimensions =  { width: 340, height: 240 }
+	this.wait = false;
 };
 
 Omg.prototype.init = function(){
@@ -12,7 +17,7 @@ Omg.prototype.init = function(){
 
 	navigator.getUserMedia({
     audio: false,
-    video: { width: 300, height: 300 }
+    video: rec.dimensions
   }, function(stream) {
 		rec.stream = stream;
 		rec.button.onclick = function(){ rec.start(); };
@@ -21,10 +26,10 @@ Omg.prototype.init = function(){
 		rec.cameraPreview.play();
 		rec.recordVideo = RecordRTC(stream,  {
 		   	type: 'gif',
-		   	video: { width: 300, height: 300 },
-    		canvas: { width: 300, height: 300 },
-	    	frameRate: 200,
-	    	quality: 8
+		   	video: rec.dimensions,
+    		canvas: rec.dimensions,
+	    	frameRate: 150,
+	    	quality: 1
 		});
 	}, function(error) {
 		if( error.message )
@@ -37,9 +42,10 @@ Omg.prototype.init = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 4,
+		counter = 1,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ' + counter;
+			rec.background.currentTime = 0;
 			counter--;
 			if( !counter ){
 				rec.stop();
@@ -55,7 +61,34 @@ Omg.prototype.start = function(){
 };
 
 Omg.prototype.stop = function(){
-	var rec = this, tracks = rec.stream.getTracks();
+	var rec = this,
+		tracks = rec.stream.getTracks(),
+		parent = rec.button.parentElement;
+
+	parent.removeChild( rec.button );
+	for( var i in parent.children ){
+		if( parent.children.hasOwnProperty( i ) )
+			parent.children[i].style.display = 'block';
+	}
+	parent.addEventListener( 'click', function( event ){
+		switch( event.target.id ){
+			case 'join':
+				window.location.href = '#gif-containerer';
+			break;
+
+			case 'again':
+				location.reload();
+				break;
+
+			case 'share':
+				FB.ui({
+					  method: 'share',
+					  href: location.href,
+					}, function(response){});
+				break;
+		}
+	});
+
 	rec.recordVideo.stopRecording();
 	if( typeof rec.stream.stop === 'function' )
 		rec.stream.stop();
@@ -67,8 +100,6 @@ Omg.prototype.stop = function(){
 	}
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
-				rec.button.onclick = function(){ rec.init(); };
-				rec.button.innerHTML = 'Let\'s move together!';
     });
 };
 
@@ -88,35 +119,43 @@ Omg.prototype.postFiles = function( videoDataURL ){
     request.send( JSON.stringify( files ) );
 };
 
-Omg.prototype.dynHeight = function() {
-	this.cameraPreview.style.height = window.innerHeight;
-};
-
 Omg.prototype.showGifs = function(){
 	var rec = this,
 		request = new XMLHttpRequest();
 		gifStr = [];
 
-		request.onreadystatechange = function() {
-			var gifs, gifStr = [];
-        if (request.readyState == 4 && request.status == 200) {
-          gifs = JSON.parse(request.responseText);
+		if( !rec.wait ){
+			rec.wait = true;
+			request.onreadystatechange = function() {
+				var gifs, gifStr = [];
+				rec.wait = false;
+	      if (request.readyState == 4 && request.status == 200) {
+	        gifs = JSON.parse(request.responseText);
+					if( !gifs.length ){
+						window.removeEventListener( 'scroll', scrollForNewGifs );
+					}
 					for( var i in gifs ){
 						if( gifs.hasOwnProperty( i ) ){
 							gifStr.push( rec.getGifStr( gifs[i] ) );
 						}
 					}
-					rec.gifContainer.innerHTML = gifStr.join('');
-        }
-    };
-    request.open( 'GET', this.serverUrl + '/gifs' );
-    request.send( );
+					rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + gifStr.join('');
+	      }
+	    };
+	    request.open( 'GET', this.serverUrl + '/gifs?start=' + rec.gifContainer.children.length );
+	    request.send( );
+		}
 };
+Omg.prototype.scrollForNewGifs = function(){
+	var rec = this;
+	if ( window.innerHeight + window.scrollY > rec.gifContainer.offsetHeight + rec.gifContainer.offsetTop )
+		rec.showGifs();
+}
 
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
-		rand = Math.floor( (Math.random() * 5));
-	return '<div class="col-sm-3 rotate' + rand * 90  + '"><img src="gif/' + fileName + '" alt=""></div>';
+		rand = Math.floor( (Math.random() * 1));
+	return '<div class="col-sm-3 rotate' + rand * 180  + '"><img src="gif/' + fileName + '" alt=""></div>';
 };
 
 Omg.prototype.startWSClient = function(){
@@ -133,12 +172,28 @@ if( navigator.getUserMedia )
 	omg.button.onclick = function(){ omg.init() };
 else{
 	omg.button.parentElement.removeChild( omg.button );
-	document.getElementByTagName('header')[0].innerHTML = '<div class="alert alert-danger">Browser not supported</div>' 
+	document.getElementByTagName('header')[0].innerHTML = '<div class="alert alert-danger">Browser not supported</div>'
 		+ document.getElementByTagName('header')[0].innerHTML
 }
 
-window.addEventListener( 'resize', function(){ omg.dynHeight() } );
-omg.dynHeight();
 
 omg.showGifs();
+var scrollForNewGifs = function(){ omg.scrollForNewGifs(); };
+window.addEventListener( 'scroll', scrollForNewGifs );
 omg.startWSClient();
+
+//facebook loader
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '387240961410803',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));

@@ -64,8 +64,7 @@ main {
     position: absolute;
     right: 3vw;
     top: 3vw;
-    width: 15vw;
-    height: 15vw; }
+    height: 35%; }
   main #grid .row:last-child {
     margin-bottom: 6vw; }
   main #grid img {
