@@ -27,7 +27,8 @@ var fs = require('fs'),
           });
 
       		request.on( 'end', function () {
-      			var
+            var
+              videoDir = process.cwd() + '/video/',
               gifDir = process.cwd() + '/public/gif/',
               fileNames = [],
               fileName,
@@ -35,11 +36,8 @@ var fs = require('fs'),
               gifPath,
       				fileBuffer;
               fs.readdir( gifDir, function( err, files ){
-
                 if( err ){
-                  console.log( err );
-                  response.writeHead( 500, {'Content-Type': 'text/plain'});
-                  response.end('error');
+                  console.log( err );                  
                   return false;
                 }
                 for( var i in files ){
@@ -50,20 +48,26 @@ var fs = require('fs'),
                 if( !fileName ){
                   fileName = 1;
                 }
+                filePath = videoDir + fileName + '.webm';
                 gifPath = gifDir + fileName + '.gif';
 
                 queryData = JSON.parse( queryData );
                 fileBuffer = new Buffer( queryData.video.split(',').pop(), "base64" );
-            		fs.writeFile( gifPath, fileBuffer, function( err ){
+            		fs.writeFile( filePath, fileBuffer, function( err ){
                   if( err ){
                     console.log( err );
-                    response.writeHead( 500, {'Content-Type': 'text/plain'});
-                    response.end('error');
                     return false;
                   }
-                  for( var i in openWss ){
-                    openWss[i].sendUTF( fileName + '.gif' );
-                  }
+                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, function( err, stdout, stderr ){
+                    if( err ){
+                      console.log( err );
+                      return false
+                    }
+                    //fs.unlink( filePath );
+                    for( var i in openWss ){
+                      openWss[i].sendUTF( fileName + '.gif' );
+                    }
+                  });
 
               });
 
