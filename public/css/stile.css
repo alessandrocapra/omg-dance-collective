@@ -5,20 +5,22 @@ body {
   font-weight: 400; }
 
 header {
-  height: 9vw;
+  height: 4.5vmax;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 1;
-  background-color: #fff;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); }
+  background-color: #fff; }
   header h1 {
     text-align: center;
-    font-size: 5vw; }
+    margin: 0;
+    padding: 2vh;
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: #0000ff; }
 
 main {
   position: absolute;
-  top: 9vw;
   overflow: auto;
   width: 100%; }
   main.container-fluid {
@@ -48,9 +50,9 @@ main {
   main #intro video#background {
     position: relative;
     top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
+    text-align: center;
+    left: 10vw;
+    min-height: 100vh;
     width: auto;
     height: auto;
     z-index: -100;
@@ -73,7 +75,6 @@ main {
 
 footer {
   background-color: #fff;
-  box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.2);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -81,7 +82,8 @@ footer {
   padding: 1em; }
   footer h4 {
     margin: 0;
-    font-size: 2.3vw; }
+    font-size: 2.3vw;
+    color: #0000ff; }
 
 /* Media queries */
 @media (max-device-width: 360px) {
@@ -90,6 +92,8 @@ footer {
     header h1 {
       font-size: 4vh; }
 
+  main #intro video#background {
+    left: 0; }
   main #intro a.pulsante {
     font-size: 4vw;
     padding: 3vw 3vw; }
