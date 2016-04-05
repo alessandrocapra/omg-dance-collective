@@ -2,14 +2,15 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
-	this.gifContainer = document.getElementById('gif-container');
+	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	this.serverUrl = 'https://www.omgdancecollective.gq';
-	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	//this.serverUrl = 'http://localhost:8080';
-	//this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'https://www.omgdancecollective.gq';
+	//this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
+	this.timeouts = {};
 };
 
 Omg.prototype.init = function(){
@@ -29,7 +30,8 @@ Omg.prototype.init = function(){
 		   	video: rec.dimensions,
     		canvas: rec.dimensions,
 	    	frameRate: 150,
-	    	quality: 1
+	    	quality: 1,
+				disableLogs : false
 		});
 	}, function(error) {
 		if( error.message )
@@ -42,21 +44,21 @@ Omg.prototype.init = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 3,
+		counter = 5,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ' + counter;
 			rec.background.currentTime = 0;
-			counter--;
 			if( !counter ){
 				rec.stop();
-				clearTimeout( timeout );
+				clearTimeout( rec.timeouts['start'] );
 			}
 			else {
-				timeout = setTimeout( func , 1000 );
+				rec.timeouts['start'] = setTimeout( func , 1000 );
 			}
+			counter--;
 		};
 	rec.recordVideo.startRecording();
-	timeout = setTimeout( func , 1000 );
+	rec.timeouts['start'] = setTimeout( func , 1000 );
 
 };
 
@@ -128,30 +130,51 @@ Omg.prototype.showGifs = function(){
 		if( !rec.wait ){
 			rec.wait = true;
 			request.onreadystatechange = function() {
-				var gifs, gifStr = [];
-				rec.wait = false;
+				var gifs, gifStr = [], j;
 	      if (request.readyState == 4 && request.status == 200) {
 	        gifs = JSON.parse(request.responseText);
 					if( !gifs.length ){
 						window.removeEventListener( 'scroll', scrollForNewGifs );
 					}
+					j = 0;
 					for( var i in gifs ){
 						if( gifs.hasOwnProperty( i ) ){
+							if( j == 0 )
+								gifStr.push( '<div class="row">' );
 							gifStr.push( rec.getGifStr( gifs[i] ) );
+							if( j == 3 ){
+								gifStr.push('</div>');
+								j = 0;
+							}
+							else
+								j++;
 						}
 					}
+					if( j == 3 )
+						gifStr.push('</div>');
 					rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + gifStr.join('');
+					rec.wait = false;
+
 	      }
 	    };
-	    request.open( 'GET', this.serverUrl + '/gifs?start=' + rec.gifContainer.children.length );
+
+	    request.open( 'GET', this.serverUrl + '/gifs?start=' + rec.gifContainer.getElementsByTagName('IMG').length );
 	    request.send( );
 		}
 };
 Omg.prototype.scrollForNewGifs = function(){
 	var rec = this;
-	if ( window.innerHeight + window.scrollY > rec.gifContainer.offsetHeight + rec.gifContainer.offsetTop )
-		rec.showGifs();
-}
+	if( typeof rec.timeouts['gif'] !== 'undefined' || rec.timeouts['gif'] ){
+		clearTimeout( rec.timeouts['gif'] );
+	}
+
+	rec.timeouts['gif'] = setTimeout( function(){
+		if ( window.innerHeight + window.scrollY > rec.gifContainer.offsetHeight + rec.gifContainer.offsetTop )
+				rec.showGifs();
+				rec.timeouts['gif'] = false;
+		}, 900 );
+
+};
 
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
