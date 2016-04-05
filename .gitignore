@@ -1,6 +1,5 @@
 node_modules
 *.orig
 .sass-cache
-stile.css.map
 public/gif/*
 video/*
