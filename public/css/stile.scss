@@ -10,6 +10,13 @@ body {
   font-weight: 400;
 }
 
+span {
+  .sottolineo {
+    border-bottom: 1px solid $blue;
+    padding-bottom: 3px;
+  }
+}
+
 header {
   height: 4.5vmax;
   width: 100%;
@@ -56,27 +63,38 @@ main {
         color: #000;
         text-transform: uppercase;
         text-align: center;
-        font-size: 2vw;
+        font-size: 1.1vw;
         font-weight: 700;
-        padding: 1vw 3vw;
+        padding: 1vh 1vw;
 
       }
 
       &#movebutton {
+        background-color: $blue;
+        color: #ffffff;
+        font-weight:700;
         position: fixed;
         top: 50%;
         left: 50%;
-        width:30vw;
+        width:20vw;
         z-index:1000;
-        border: 1vmin solid #000;
+        border: 1vmin solid $blue;
+
 
         margin-top:20vh;
-        margin-left:-15vw;
+        margin-left:-10vw;
         //transition: all 0.2s ease-in-out;
 
         &:hover {
           text-decoration: none;
-          //transform: scale(1.1);
+          background-color: rgba(255,255,255,0);
+          border: 1vmin solid $blue;
+          color: $blue;
+          font-weight: 700;
+        }
+
+        &:active {
+          @extend a#movebutton:hover;
         }
       }
     }

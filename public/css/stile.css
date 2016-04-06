@@ -4,6 +4,10 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 400; }
 
+span .sottolineo {
+  border-bottom: 1px solid #0000ff;
+  padding-bottom: 3px; }
+
 header {
   height: 4.5vmax;
   width: 100%;
@@ -30,20 +34,27 @@ main {
     color: #000;
     text-transform: uppercase;
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.1vw;
     font-weight: 700;
-    padding: 1vw 3vw; }
+    padding: 1vh 1vw; }
   main #intro a#movebutton {
+    background-color: #0000ff;
+    color: #ffffff;
+    font-weight: 700;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 30vw;
+    width: 20vw;
     z-index: 1000;
-    border: 1vmin solid #000;
+    border: 1vmin solid #0000ff;
     margin-top: 20vh;
-    margin-left: -15vw; }
-    main #intro a#movebutton:hover {
-      text-decoration: none; }
+    margin-left: -10vw; }
+    main #intro a#movebutton:hover, main #intro a#movebutton:active {
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0);
+      border: 1vmin solid #0000ff;
+      color: #0000ff;
+      font-weight: 700; }
   main #intro video#background {
     position: relative;
     top: 0;
