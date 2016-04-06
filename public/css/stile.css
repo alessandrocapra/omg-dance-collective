@@ -4,9 +4,12 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 400; }
 
-span .sottolineo {
-  border-bottom: 1px solid #0000ff;
-  padding-bottom: 3px; }
+p, span {
+  font-size: 1.2vw;
+  line-height: 2; }
+  p.sottolineo, span.sottolineo {
+    border-bottom: 3px solid #0000ff;
+    padding-bottom: 5px; }
 
 header {
   height: 4.5vmax;
@@ -26,7 +29,8 @@ header {
 main {
   position: absolute;
   overflow: auto;
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 4.5vmax; }
   main #intro button {
     display: none; }
   main #intro a.pulsante {
@@ -57,8 +61,8 @@ main {
       font-weight: 700; }
   main #intro video#background {
     position: relative;
-    top: 0;
-    min-height: 100vh;
+    top: 3vmax;
+    min-height: calc(100vh - 9vmax);
     width: auto;
     height: auto;
     z-index: -100;
@@ -70,11 +74,11 @@ main {
     position: absolute;
     right: 3vw;
     top: 3vw;
-    height: 35%; }
+    height: 35vh; }
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
-      margin: 2vw 6vw; }
+      margin: 2vw 14vw; }
     main #grid .row:last-child {
       margin-bottom: 6vw; }
     main #grid img {
@@ -85,23 +89,44 @@ main {
       transform: rotate(90deg); }
     main #grid .rotate-270 {
       transform: rotate(270deg); }
+  main #about {
+    color: #0000ff; }
+    main #about.row {
+      margin: 2vw 14vw; }
+    main #about .titolo {
+      font-size: 2.6vw;
+      text-transform: uppercase; }
+    main #about img {
+      width: 100%;
+      height: auto; }
+    main #about figure {
+      margin-bottom: 5vh; }
+      main #about figure:first-child {
+        margin-top: 3.5vh; }
+      main #about figure figcaption {
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 2vh; }
 
 footer {
   background-color: #fff;
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 4.5vmax;
-  padding: 1em; }
+  height: 4.5vmax; }
   footer h4 {
     margin: 0;
+    padding-top: 1.5vw;
     font-size: 1.5vw;
     color: #0000ff; }
 
 /* Media queries */
 @media (max-device-width: 360px) {
+  p, span {
+    font-size: 4vw; }
+
   header {
-    height: 18vw; }
+    height: 8vmax; }
     header h1 {
       font-size: 4vh; }
 
