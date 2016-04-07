@@ -106,8 +106,9 @@ main {
       &#background {
         position: relative;
         top: 3vmax;
-        min-height: calc(100vh - 9vmax);
-        width: auto;
+        min-height: 50vh;
+        //min-width: 66vw;
+        width: 73%;
         height: auto;
         z-index: -100;
         overflow: hidden;
@@ -134,7 +135,7 @@ main {
     //padding-bottom: 10vh;
 
     .row {
-      margin:2vw 14vw;
+      margin:2vw 15vw;
     }
 
     .row:last-child{
@@ -192,7 +193,7 @@ main {
     }
 
     &.row {
-      margin:2vw 14vw;
+      margin:2vw 11vw;
     }
 
     .titolo {

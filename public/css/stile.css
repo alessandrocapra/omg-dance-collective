@@ -63,8 +63,8 @@ main {
   main #intro video#background {
     position: relative;
     top: 3vmax;
-    min-height: calc(100vh - 9vmax);
-    width: auto;
+    min-height: 50vh;
+    width: 73%;
     height: auto;
     z-index: -100;
     overflow: hidden;
@@ -79,7 +79,7 @@ main {
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
-      margin: 2vw 14vw; }
+      margin: 2vw 15vw; }
     main #grid .row:last-child {
       margin-bottom: 6vw; }
     main #grid .row:nth-child(odd) img:nth-child(even) {
@@ -103,7 +103,7 @@ main {
         border-bottom-color: transparent;
         background-image: linear-gradient(transparent 30%, #0000ff 50%, transparent 30%); }
     main #about.row {
-      margin: 2vw 14vw; }
+      margin: 2vw 11vw; }
     main #about .titolo {
       font-size: 2.6vw;
       text-transform: uppercase; }
