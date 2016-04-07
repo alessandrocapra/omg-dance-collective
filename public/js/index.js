@@ -195,7 +195,7 @@ Omg.prototype.scrollForNewGifs = function(){
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
 		rand = Math.floor( (Math.random() * 2));
-	return '<div class="col-sm-3 rotate' + rand * 180  + '"><img src="gif/' + fileName + '" alt=""></div>';
+	return '<div class="col-sm-3><img src="gif/' + fileName + '" alt=""></div>';
 };
 
 Omg.prototype.startWSClient = function(){
@@ -204,7 +204,15 @@ Omg.prototype.startWSClient = function(){
 		return false;
 	connection = new WebSocket( this.wsUrl, 'gif' );
 	connection.onmessage = function(e){
-	   rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
+		var lastRow = rec.gifContainer.lastChild, container;
+		if( lastRow.children.length ){
+			container = document.createElement('div');
+			container.class = 'row';
+			rec.gifContainer.appendChild( container );
+		}
+		else
+			container = lastRow;
+	    container.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
 	}
 }
 omg = new Omg();
