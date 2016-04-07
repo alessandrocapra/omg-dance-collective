@@ -79,15 +79,15 @@ main {
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
-      margin: 2vw 15vw; }
+      margin: 2vw 11vw; }
     main #grid .row:last-child {
       margin-bottom: 6vw; }
-    main #grid .row:nth-child(odd) img:nth-child(even) {
-      transform: scale(-1, 1); }
-    main #grid .row:nth-child(even) img {
-      transform: scale(1, -1); }
-      main #grid .row:nth-child(even) img:nth-child(even) {
-        transform: scale(-1, 1); }
+    main #grid .row:nth-child(odd) .col-sm-3:nth-child(even) img {
+      transform: rotateY(180deg); }
+    main #grid .row:nth-child(even) .col-sm-3 {
+      transform: rotateX(180deg); }
+      main #grid .row:nth-child(even) .col-sm-3:nth-child(even) img {
+        transform: rotateY(180deg); }
     main #grid img {
       width: 100%; }
   main #about {

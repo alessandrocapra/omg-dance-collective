@@ -135,7 +135,7 @@ main {
     //padding-bottom: 10vh;
 
     .row {
-      margin:2vw 15vw;
+      margin:2vw 11vw;
     }
 
     .row:last-child{
@@ -143,17 +143,21 @@ main {
     }
 
     .row:nth-child(odd) {
-      img:nth-child(even) {
-        transform: scale(-1,1);
+      .col-sm-3:nth-child(even) {
+        img {
+          transform: rotateY(180deg);
+          //transform: scale(-1,1);
+        }
       }
     }
 
     .row:nth-child(even) {
-      img{
-        transform: scale(1,-1);
-
+      .col-sm-3 {
+        transform: rotateX(180deg);
         &:nth-child(even) {
-          transform: scale(-1,1);
+          img{
+            transform: rotateY(180deg);
+          }
         }
       }
     }
