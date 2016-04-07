@@ -1,4 +1,3 @@
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
@@ -16,15 +15,23 @@ var Omg = function(){
 Omg.prototype.init = function(){
 	var rec = this;
 
-	navigator.getUserMedia({
-    audio: false,
-    video: rec.dimensions
-  }, function(stream) {
+	getUserMedia({
+	    audio: false,
+	    video: true,
+	    width: rec.dimensions.width,
+	    height: rec.dimensions.height,
+	    mode: "callback",
+	    swffile: "js/fallback/jscam.swf",
+	    quality: 80,
+	    el: rec.cameraPreview,
+	    onSave: function( x ){
+	    	console.log( '?' );
+	    	console.log( x );
+	    }
+	  }, function(stream) {
 		rec.stream = stream;
 		rec.button.onclick = function(){ rec.start(); };
 		rec.button.innerHTML = 'Start Recording';
-		rec.cameraPreview.src = window.URL.createObjectURL(stream);
-		rec.cameraPreview.play();
 		rec.recordVideo = RecordRTC(stream,  {
 		   	type: 'webm',
 		   	video: rec.dimensions,
