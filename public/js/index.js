@@ -13,7 +13,7 @@ var Omg = function(){
 };
 
 Omg.prototype.init = function(){
-	var rec = this;
+	var rec = this;	
 
 	getUserMedia({
 	    audio: false,
@@ -199,13 +199,11 @@ Omg.prototype.startWSClient = function(){
 	}
 }
 omg = new Omg();
-if( navigator.getUserMedia )
-	omg.button.onclick = function(){ omg.init() };
-else{
-	omg.button.parentElement.removeChild( omg.button );
-	document.getElementByTagName('header')[0].innerHTML = '<div class="alert alert-danger">Browser not supported</div>'
-		+ document.getElementByTagName('header')[0].innerHTML
-}
+
+omg.button.onclick = function(){ 
+	omg.background.play();
+	omg.init() 
+};
 
 
 omg.showGifs();
