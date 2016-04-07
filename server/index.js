@@ -96,7 +96,7 @@ var fs = require('fs'),
               response.writeHead( 200, {
                 'Content-Type': 'text/json'
               });
-              response.end( JSON.stringify( files.slice(  start, start + 16 ) ) );
+              response.end( JSON.stringify( files.slice(  start, start + 12 ) ) );
             });
             break;
 
