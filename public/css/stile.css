@@ -39,7 +39,8 @@ main {
   main #intro button {
     display: none; }
   main #intro .divPulsanti {
-    text-align: center; }
+    text-align: center;
+    display: none; }
   main #intro a.pulsante {
     background: #fff;
     color: #0000ff;
