@@ -57,10 +57,10 @@ Omg.prototype.init = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 5,
+		counter = 39,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ' + counter;
-			rec.background.currentTime = 0;
+
 			if( !counter ){
 				rec.stop();
 				clearTimeout( rec.timeouts['start'] );
@@ -70,6 +70,9 @@ Omg.prototype.start = function(){
 			}
 			counter--;
 		};
+	rec.button.onclick = function(){};
+	rec.background.src = 'video/unfearing-long.mp4';
+	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
 
@@ -80,6 +83,7 @@ Omg.prototype.stop = function(){
 		tracks = rec.stream.getTracks(),
 		parent = rec.button.parentElement;
 
+	rec.background.src = 'video/unfearing-short.mp4';
 	rec.cameraPreview.style.display = 'none';
 	parent.removeChild( rec.button );
 	for( var i in parent.children ){
