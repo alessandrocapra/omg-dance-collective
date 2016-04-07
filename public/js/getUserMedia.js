@@ -17,11 +17,11 @@
             if ( !! navigator.getUserMedia_) {
 
 
-                // constructing a getUserMedia config-object and 
+                // constructing a getUserMedia config-object and
                 // an string (we will try both)
                 var option_object = {};
                 var option_string = '';
-                var getUserMediaOptions, container, temp, video, ow, oh;
+                var getUserMediaOptions, temp, video, ow, oh;
 
                 if (options.video === true) {
                     option_object.video = true;
@@ -35,27 +35,7 @@
                     option_string = option_string + 'audio';
                 }
 
-                container = document.getElementById(options.el);
-                temp = document.createElement('video');
-
-                // Fix for ratio
-                ow = parseInt(container.offsetWidth, 10);
-                oh = parseInt(container.offsetHeight, 10);
-
-                if (options.width < ow && options.height < oh) {
-                    options.width = ow;
-                    options.height = oh;
-                }
-
-                // configure the interim video
-                temp.width = options.width;
-                temp.height = options.height;
-                temp.autoplay = true;
-                container.appendChild(temp);
-                video = temp;
-
                 // referenced for use in your applications
-                options.videoEl = video;
                 options.context = 'webrtc';
 
                 // first we try if getUserMedia supports the config object
@@ -102,7 +82,7 @@
 
                         if (cam.capture !== undefined) {
 
-                            // Simple callback methods are not allowed 
+                            // Simple callback methods are not allowed
                             options.capture = function (x) {
                                 try {
                                     return cam.capture(x);
@@ -134,7 +114,7 @@
                             // options.debug("error", "Flash movie not yet registered!");
                             errorCallback();
                         } else {
-                            // Flash interface not ready yet 
+                            // Flash interface not ready yet
                             window.setTimeout(register, 1000 * (4 - run), run - 1);
                         }
                     }(3));
