@@ -81,6 +81,12 @@ main {
       margin: 2vw 14vw; }
     main #grid .row:last-child {
       margin-bottom: 6vw; }
+    main #grid .row:nth-child(odd) img:nth-child(even) {
+      transform: scale(-1, 1); }
+    main #grid .row:nth-child(even) img {
+      transform: scale(1, -1); }
+      main #grid .row:nth-child(even) img:nth-child(even) {
+        transform: scale(-1, 1); }
     main #grid img {
       width: 100%; }
     main #grid .rotate180 {
