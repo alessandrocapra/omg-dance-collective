@@ -1,4 +1,3 @@
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 var Omg = function(){
 	this.button = document.getElementById('movebutton');
 	this.cameraPreview = document.getElementById('camera');
@@ -16,23 +15,37 @@ var Omg = function(){
 Omg.prototype.init = function(){
 	var rec = this;
 
-	navigator.getUserMedia({
-    audio: false,
-    video: rec.dimensions
-  }, function(stream) {
-		rec.stream = stream;
-		rec.button.onclick = function(){ rec.start(); };
-		rec.button.innerHTML = 'Start Recording';
-		rec.cameraPreview.src = window.URL.createObjectURL(stream);
-		rec.cameraPreview.play();
-		rec.recordVideo = RecordRTC(stream,  {
-		   	type: 'webm',
-		   	video: rec.dimensions,
-    		canvas: rec.dimensions,
-	    	frameRate: 150,
-	    	quality: 1,
-				disableLogs : false
-		});
+	getUserMedia({
+	    audio: false,
+	    video: true,
+	    width: rec.dimensions.width,
+	    height: rec.dimensions.height,
+	    mode: "callback",
+	    swffile: "js/fallback/jscam.swf",
+	    quality: 80,
+			el: rec.cameraPreview.id
+
+	  }, function(stream) {
+			rec.stream = stream;
+
+
+			var vendorURL = window.URL || window.webkitURL;
+			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+
+			rec.cameraPreview.onerror = function (e, o) {
+				console.log( e, o );
+					alert('error in trasmitting data');
+			};
+			rec.button.onclick = function(){ rec.start(); };
+			rec.button.innerHTML = 'Start Recording';
+			rec.recordVideo = RecordRTC(stream,  {
+			   	type: 'webm',
+			   	video: rec.dimensions,
+	    		canvas: rec.dimensions,
+		    	frameRate: 150,
+		    	quality: 1,
+					disableLogs : false
+			});
 	}, function(error) {
 		if( error.message )
 			alert( error.message );
@@ -192,13 +205,11 @@ Omg.prototype.startWSClient = function(){
 	}
 }
 omg = new Omg();
-if( navigator.getUserMedia )
-	omg.button.onclick = function(){ omg.init() };
-else{
-	omg.button.parentElement.removeChild( omg.button );
-	document.getElementByTagName('header')[0].innerHTML = '<div class="alert alert-danger">Browser not supported</div>'
-		+ document.getElementByTagName('header')[0].innerHTML
-}
+
+omg.button.onclick = function(){
+	omg.background.play();
+	omg.init()
+};
 
 
 omg.showGifs();
@@ -207,6 +218,7 @@ window.addEventListener( 'scroll', scrollForNewGifs );
 omg.startWSClient();
 
 //facebook loader
+/*
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '387240961410803',
@@ -221,3 +233,4 @@ window.fbAsyncInit = function() {
 	js.src = "//connect.facebook.net/en_US/sdk.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+*/
