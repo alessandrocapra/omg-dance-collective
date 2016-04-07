@@ -93,6 +93,11 @@ var fs = require('fs'),
                 return false;
               }
 
+              files.sort(function(a, b) {
+                 return fs.statSync(dir + b).mtime.getTime() -
+                        fs.statSync(dir + a).mtime.getTime();
+             });
+
               response.writeHead( 200, {
                 'Content-Type': 'text/json'
               });
