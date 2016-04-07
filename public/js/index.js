@@ -32,8 +32,7 @@ Omg.prototype.init = function(){
 			var vendorURL = window.URL || window.webkitURL;
 			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
 
-			rec.cameraPreview.onerror = function (e, o) {
-				console.log( e, o );
+			rec.cameraPreview.onerror = function() {
 					alert('error in trasmitting data');
 			};
 			rec.button.onclick = function(){ rec.start(); };
@@ -47,7 +46,7 @@ Omg.prototype.init = function(){
 					disableLogs : false
 			});
 	}, function(error) {
-		if( error.message )
+		if( typeof error !== 'undefined' && error.message )
 			alert( error.message );
 		else
 			alert( 'browser/webcam not supported' );
