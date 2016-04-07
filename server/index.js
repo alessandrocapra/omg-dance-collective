@@ -58,11 +58,13 @@ var fs = require('fs'),
                     console.log( err );
                     return false;
                   }
+                  console.log('salvato file ' + filePath );
                   exec( './server/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
                     if( err ){
                       console.log( err );
                       return false
                     }
+                    console.log('salvato file ' + gifPath );
                     fs.unlink( filePath );
                     for( var i in openWss ){
                       openWss[i].sendUTF( fileName + '.gif' );
