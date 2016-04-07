@@ -4,10 +4,11 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 400; }
 
-p, span {
+p, span, a {
   font-size: 1.2vw;
-  line-height: 2; }
-  p.sottolineo, span.sottolineo {
+  line-height: 2;
+  color: #0000ff; }
+  p.sottolineo, span.sottolineo, a.sottolineo {
     border-bottom: 3px solid #0000ff;
     padding-bottom: 5px; }
 
@@ -89,14 +90,18 @@ main {
         transform: scale(-1, 1); }
     main #grid img {
       width: 100%; }
-    main #grid .rotate180 {
-      transform: rotate(180deg); }
-    main #grid .rotate90 {
-      transform: rotate(90deg); }
-    main #grid .rotate-270 {
-      transform: rotate(270deg); }
   main #about {
     color: #0000ff; }
+    main #about a {
+      font-weight: 700;
+      font-style: italic;
+      border-bottom: 3px solid #0000ff;
+      padding-bottom: 5px;
+      color: #0000ff; }
+      main #about a:hover {
+        text-decoration: none;
+        border-bottom-color: transparent;
+        background-image: linear-gradient(transparent 30%, #0000ff 50%, transparent 30%); }
     main #about.row {
       margin: 2vw 14vw; }
     main #about .titolo {
