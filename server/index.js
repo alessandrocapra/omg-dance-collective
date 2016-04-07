@@ -94,8 +94,8 @@ var fs = require('fs'),
               }
 
               files.sort(function(a, b) {
-                 return fs.statSync(dir + b).mtime.getTime() -
-                        fs.statSync(dir + a).mtime.getTime();
+                 return fs.statSync(gifDir + b).mtime.getTime() -
+                        fs.statSync(gifDir + a).mtime.getTime();
              });
 
               response.writeHead( 200, {
