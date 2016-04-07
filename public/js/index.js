@@ -87,7 +87,7 @@ Omg.prototype.stop = function(){
 	parent.removeChild( rec.button );
 	for( var i in parent.children ){
 		if( parent.children.hasOwnProperty( i ) )
-			parent.children[i].style.display = 'block';
+			parent.children[i].style.display = 'inline-block';
 	}
 	parent.addEventListener( 'click', function( event ){
 		switch( event.target.id ){
