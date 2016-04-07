@@ -218,6 +218,7 @@ window.addEventListener( 'scroll', scrollForNewGifs );
 omg.startWSClient();
 
 //facebook loader
+/*
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '387240961410803',
@@ -232,3 +233,4 @@ window.fbAsyncInit = function() {
 	js.src = "//connect.facebook.net/en_US/sdk.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+*/
