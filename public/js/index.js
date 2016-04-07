@@ -195,7 +195,7 @@ Omg.prototype.scrollForNewGifs = function(){
 Omg.prototype.getGifStr = function( fileName ){
 	var rec = this,
 		rand = Math.floor( (Math.random() * 2));
-	return '<div class="col-sm-3><img src="gif/' + fileName + '" alt=""></div>';
+	return '<div class="col-sm-3"><img src="gif/' + fileName + '" alt=""></div>';
 };
 
 Omg.prototype.startWSClient = function(){
