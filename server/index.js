@@ -11,7 +11,7 @@ var fs = require('fs'),
     response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
     //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
-      case '/video':
+      case '/stream':
       	if(request.method == 'POST') {
       		var queryData = "";
 
@@ -58,12 +58,12 @@ var fs = require('fs'),
                     console.log( err );
                     return false;
                   }
-                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, function( err, stdout, stderr ){
+                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
                     if( err ){
                       console.log( err );
                       return false
                     }
-                    //fs.unlink( filePath );
+                    fs.unlink( filePath );
                     for( var i in openWss ){
                       openWss[i].sendUTF( fileName + '.gif' );
                     }
@@ -92,6 +92,11 @@ var fs = require('fs'),
                 response.end('error');
                 return false;
               }
+
+              files.sort(function(a, b) {
+                 return fs.statSync(gifDir + b).mtime.getTime() -
+                        fs.statSync(gifDir + a).mtime.getTime();
+             });
 
               response.writeHead( 200, {
                 'Content-Type': 'text/json'

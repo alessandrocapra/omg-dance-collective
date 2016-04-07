@@ -73,7 +73,10 @@
                     '<param name="allowScriptAccess" value="always" />'+
                     '</object>';
                     el = document.getElementById(options.el);
-                    el.innerHTML = source;
+                    var newEl = document.createElement("div");
+                    newEl.id = options.el;
+                    el.parentElement.replaceChild( newEl, el );
+                    newEl.innerHTML = source;
 
 
                     (function register(run) {

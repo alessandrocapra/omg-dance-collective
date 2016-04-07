@@ -32,8 +32,7 @@ Omg.prototype.init = function(){
 			var vendorURL = window.URL || window.webkitURL;
 			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
 
-			rec.cameraPreview.onerror = function (e, o) {
-				console.log( e, o );
+			rec.cameraPreview.onerror = function() {
 					alert('error in trasmitting data');
 			};
 			rec.button.onclick = function(){ rec.start(); };
@@ -44,10 +43,10 @@ Omg.prototype.init = function(){
 	    		canvas: rec.dimensions,
 		    	frameRate: 150,
 		    	quality: 1,
-					disableLogs : false
+					disableLogs : true
 			});
 	}, function(error) {
-		if( error.message )
+		if( typeof error !== 'undefined' && error.message )
 			alert( error.message );
 		else
 			alert( 'browser/webcam not supported' );
@@ -57,10 +56,10 @@ Omg.prototype.init = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 5,
+		counter = 39,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ' + counter;
-			rec.background.currentTime = 0;
+
 			if( !counter ){
 				rec.stop();
 				clearTimeout( rec.timeouts['start'] );
@@ -70,6 +69,9 @@ Omg.prototype.start = function(){
 			}
 			counter--;
 		};
+	rec.button.onclick = function(){};
+	rec.background.src = 'video/unfearing-long.mp4';
+	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
 
@@ -80,6 +82,7 @@ Omg.prototype.stop = function(){
 		tracks = rec.stream.getTracks(),
 		parent = rec.button.parentElement;
 
+	rec.background.src = 'video/unfearing-short.mp4';
 	rec.cameraPreview.style.display = 'none';
 	parent.removeChild( rec.button );
 	for( var i in parent.children ){
@@ -131,7 +134,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
             var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
         }
     };
-    request.open( 'POST', this.serverUrl + '/video' );
+    request.open( 'POST', this.serverUrl + '/stream' );
     request.send( JSON.stringify( files ) );
 };
 
@@ -190,9 +193,7 @@ Omg.prototype.scrollForNewGifs = function(){
 };
 
 Omg.prototype.getGifStr = function( fileName ){
-	var rec = this,
-		rand = Math.floor( (Math.random() * 2));
-	return '<div class="col-sm-3 rotate' + rand * 180  + '"><img src="gif/' + fileName + '" alt=""></div>';
+	return '<div class="col-sm-3"><img src="gif/' + fileName + '" alt=""></div>';
 };
 
 Omg.prototype.startWSClient = function(){
@@ -201,7 +202,15 @@ Omg.prototype.startWSClient = function(){
 		return false;
 	connection = new WebSocket( this.wsUrl, 'gif' );
 	connection.onmessage = function(e){
-	   rec.gifContainer.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
+		var lastRow = rec.gifContainer.lastChild, container;
+		if( lastRow.children.length >= 4 ){
+			container = document.createElement('div');
+			container.class = 'row';
+			rec.gifContainer.appendChild( container );
+		}
+		else
+			container = lastRow;
+    container.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
 	}
 }
 omg = new Omg();
