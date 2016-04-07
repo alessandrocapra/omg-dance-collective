@@ -63,7 +63,7 @@ var fs = require('fs'),
                       console.log( err );
                       return false
                     }
-                    //fs.unlink( filePath );
+                    fs.unlink( filePath );
                     for( var i in openWss ){
                       openWss[i].sendUTF( fileName + '.gif' );
                     }

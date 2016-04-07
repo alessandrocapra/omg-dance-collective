@@ -75,7 +75,7 @@
                     el = document.getElementById(options.el);
                     var newEl = document.createElement("div");
                     newEl.id = options.el;
-                    el.parentElement.replaceElement( newEl, el );
+                    el.parentElement.replaceChild( newEl, el );
                     el.innerHTML = source;
 
 
