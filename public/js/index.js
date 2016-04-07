@@ -23,7 +23,7 @@ Omg.prototype.init = function(){
 	    mode: "callback",
 	    swffile: "js/fallback/jscam.swf",
 	    quality: 80,
-	    el: rec.cameraPreview,
+	    el: rec.cameraPreview.id,
 	    onSave: function( x ){
 	    	console.log( '?' );
 	    	console.log( x );
