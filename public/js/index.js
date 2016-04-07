@@ -43,7 +43,7 @@ Omg.prototype.init = function(){
 	    		canvas: rec.dimensions,
 		    	frameRate: 150,
 		    	quality: 1,
-					disableLogs : false
+					disableLogs : true
 			});
 	}, function(error) {
 		if( typeof error !== 'undefined' && error.message )
