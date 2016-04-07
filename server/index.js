@@ -58,7 +58,7 @@ var fs = require('fs'),
                     console.log( err );
                     return false;
                   }
-                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, function( err, stdout, stderr ){
+                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
                     if( err ){
                       console.log( err );
                       return false
