@@ -11,7 +11,7 @@ var fs = require('fs'),
     response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
     //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
-      case '/video':
+      case '/stream':
       	if(request.method == 'POST') {
       		var queryData = "";
 

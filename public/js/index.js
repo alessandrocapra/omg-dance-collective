@@ -134,7 +134,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
             var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
         }
     };
-    request.open( 'POST', this.serverUrl + '/video' );
+    request.open( 'POST', this.serverUrl + '/stream' );
     request.send( JSON.stringify( files ) );
 };
 
