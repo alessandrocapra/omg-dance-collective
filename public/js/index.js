@@ -35,7 +35,7 @@ Omg.prototype.init = function(){
 			rec.cameraPreview.onerror = function() {
 					alert('error in trasmitting data');
 			};
-			rec.button.onclick = function(){ rec.start(); };
+			rec.button.onclick = function(){ rec.ready(); };
 			rec.button.innerHTML = 'Start Recording';
 			rec.recordVideo = RecordRTC(stream,  {
 			   	type: 'webm',
@@ -54,11 +54,31 @@ Omg.prototype.init = function(){
 
 }
 
+Omg.prototype.ready = function(){
+	var rec = this,
+		counter = 5,
+		func = function(){
+			rec.button.innerHTML = 'Ready?! ' + counter;
+
+			if( !counter ){
+				rec.start();
+				clearTimeout( rec.timeouts['ready'] );
+			}
+			else {
+				rec.timeouts['ready'] = setTimeout( func , 1000 );
+			}
+			counter--;
+		};
+		
+	rec.timeouts['ready'] = setTimeout( func , 1000 );
+	rec.button.onclick = function(){};
+}
+
 Omg.prototype.start = function(){
 	var rec = this,
 		counter = 39,
 		func = function(){
-			rec.button.innerHTML = 'Dance!! ' + counter;
+			rec.button.innerHTML = 'Dance!! ';
 
 			if( !counter ){
 				rec.stop();
@@ -69,7 +89,7 @@ Omg.prototype.start = function(){
 			}
 			counter--;
 		};
-	rec.button.onclick = function(){};
+	
 	rec.background.src = 'video/unfearing-long.mp4';
 	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
@@ -82,7 +102,7 @@ Omg.prototype.stop = function(){
 		tracks = rec.stream.getTracks(),
 		parent = rec.button.parentElement;
 
-	rec.background.src = 'video/unfearing-short.mp4';
+	rec.background.src = rec.cameraPreview.src;
 	rec.cameraPreview.style.display = 'none';
 	parent.removeChild( rec.button );
 	for( var i in parent.children ){
