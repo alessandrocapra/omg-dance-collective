@@ -15,7 +15,7 @@
             if( typeof navigator.mediaDevices !== 'undefined' && navigator.mediaDevices.getUserMedia )
                 navigator.getUserMedia_ = navigator.mediaDevices.getUserMedia;
             else
-                navigator.getUserMedia_ = ( || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+                navigator.getUserMedia_ = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
             if ( !! navigator.getUserMedia_) {
 
