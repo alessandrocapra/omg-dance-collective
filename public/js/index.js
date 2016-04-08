@@ -50,7 +50,7 @@ Omg.prototype.init = function(){
 		if( typeof error !== 'undefined' && error.message )
 			alert( error.message );
 		else
-			alert( 'browser/webcam not supported' );
+			alert( 'It seems that your computer doesn\'t support recording videos through the browser. Please try again with a different browser, such as Firefox or Chrome!' );
 	});
 
 }
