@@ -2,10 +2,10 @@
 /* Variables */
 body {
   font-family: 'Lato', sans-serif;
-  font-weight: 700; }
+  font-weight: 700;
+  font-size: 1.2vw; }
 
 p, span, a {
-  font-size: 1.2vw;
   line-height: 2;
   color: #0000ff; }
   p.sottolineo, span.sottolineo, a.sottolineo {
@@ -56,15 +56,15 @@ main {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 20vw;
+    width: 16vw;
     z-index: 1000;
-    border: 1vmin solid #0000ff;
+    border: 2px solid #0000ff;
     margin-top: 20vh;
-    margin-left: -10vw; }
+    margin-left: -8vw; }
     main #intro a#movebutton:hover, main #intro a#movebutton:active {
       text-decoration: none;
       background-color: rgba(255, 255, 255, 0);
-      border: 1vmin solid #0000ff;
+      border: 2px solid #0000ff;
       color: #0000ff;
       font-weight: 700; }
   main #intro a.trePulsanti {
@@ -80,7 +80,6 @@ main {
     height: auto;
     z-index: -100;
     overflow: hidden;
-    border: 1px solid #0000ff;
     display: block;
     margin: 0 auto; }
   main #intro video#camera {
@@ -91,7 +90,12 @@ main {
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
-      margin: 2vw 11vw; }
+      margin: 2vh 11vw; }
+      main #grid .row .col-sm-3 {
+        padding-right: 1vh;
+        padding-left: 1vh; }
+    main #grid .row:first-child {
+      margin-top: 10vh; }
     main #grid .row:last-child {
       margin-bottom: 6vw; }
     main #grid .row:nth-child(odd) .col-sm-3:nth-child(even) img {
@@ -123,7 +127,7 @@ main {
     main #about.row {
       margin: 2vw 11vw; }
     main #about .titolo {
-      font-size: 2.6vw;
+      font-size: 2vw;
       text-transform: uppercase; }
     main #about img {
       width: 100%;
@@ -142,7 +146,8 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 4.5vmax; }
+  height: 4.5vmax;
+  padding-top: 2.5vh; }
   footer a {
     color: #0000ff; }
     footer a:hover {
@@ -150,11 +155,6 @@ footer {
       text-decoration: none;
       border-bottom: 3px solid #0000ff;
       padding-bottom: 5px; }
-  footer h4 {
-    margin: 0;
-    padding-top: 1.5vw;
-    font-size: 1.5vw;
-    color: #0000ff; }
 
 /* Media queries */
 @media (max-device-width: 360px) {
