@@ -17,13 +17,13 @@ var fs = require('fs'),
 
       		request.on( 'data', function( data ) {
               queryData += data;
-              if( queryData.length > 1e7 ) { //around 10MBs
+              //if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
                   console.log( 'request too large' );
                   queryData = "";
                   response.writeHead(413, {'Content-Type': 'text/plain'});
                   response.end();
                   request.connection.destroy();
-              }
+              //}
           });
 
       		request.on( 'end', function () {
