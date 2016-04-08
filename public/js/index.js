@@ -41,7 +41,8 @@ Omg.prototype.init = function(){
 			   	type: 'webm',
 			   	video: rec.dimensions,
 	    		canvas: rec.dimensions,
-		    	frameRate: 150,
+		    	frameInterval: 80,
+		    	bitsPerSecond: 28200
 		    	quality: 1,
 					disableLogs : true
 			});
@@ -69,7 +70,7 @@ Omg.prototype.ready = function(){
 			}
 			counter--;
 		};
-		
+
 	rec.timeouts['ready'] = setTimeout( func , 1000 );
 	rec.button.onclick = function(){};
 }
