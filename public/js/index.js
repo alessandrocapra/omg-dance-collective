@@ -251,10 +251,11 @@ window.addEventListener( 'scroll', scrollForNewGifs );
 		about = document.getElementById('about'),
 		footer = document.querySelector('footer');
 	window.addEventListener( 'scroll', function(){
-		if ( window.innerHeight + window.scrollY > grid.offsetTop )
-			footer.className = 'container-fluid down';
-		else if ( window.innerHeight + window.scrollY > about.offsetTop )
+
+		if ( window.innerHeight + window.scrollY > about.offsetTop )
 			footer.className = 'container-fluid down about';
+		else if ( window.innerHeight + window.scrollY > grid.offsetTop )
+			footer.className = 'container-fluid down';
 		else
 			footer.className = 'container-fluid';
 
