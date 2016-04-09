@@ -92,7 +92,7 @@ Omg.prototype.start = function(){
 		};
 
 	rec.background.src = 'video/unfearing-long.mp4';
-	rec.background.currentTime = 0;
+	//rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
 
