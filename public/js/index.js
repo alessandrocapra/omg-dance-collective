@@ -245,6 +245,17 @@ omg.button.onclick = function(){
 omg.showGifs();
 var scrollForNewGifs = function(){ omg.scrollForNewGifs(); };
 window.addEventListener( 'scroll', scrollForNewGifs );
+
+(function(){
+	var about = document.getElementById('about'), footer = document.querySelector('footer');
+	window.addEventListener( 'scroll', function(){
+		if ( window.innerHeight + window.scrollY > about.offsetTop )
+			footer.className = 'container-fluid down';
+		else
+			footer.className = 'container-fluid';
+
+	} );
+})();
 omg.startWSClient();
 
 //facebook loader

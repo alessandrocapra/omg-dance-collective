@@ -128,7 +128,7 @@ main {
         display: block;
         margin: 0 auto;
       }
-      
+
       &#camera {
         position: absolute;
         right:3vw;
@@ -266,6 +266,7 @@ footer {
   width: 100%;
   height: 4.5vmax;
   padding-top:2.5vh;
+  font-weight: 700;
 
   a {
     color: $blue;
@@ -277,6 +278,17 @@ footer {
       padding-bottom: 5px;
     }
   }
+
+  #watch-tutorial-link,
+  #about-link{
+    display: none
+  }
+
+  &.down #watch-tutorial-link,
+  &.down #about-link{
+    display: block
+  }
+
 
   //h4 {
   //  margin: 0;
