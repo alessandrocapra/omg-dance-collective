@@ -101,15 +101,14 @@ Omg.prototype.start = function(){
 Omg.prototype.stop = function(){
 	var rec = this,
 		tracks = rec.stream.getTracks(),
-		parent = rec.button.parentElement;
-
-	rec.background.src = rec.cameraPreview.src;
+		parent = document.getElementById( 'final-buttons' ),
+		rec.background.src;
 	rec.cameraPreview.style.display = 'none';
-	parent.removeChild( rec.button );
-	for( var i in parent.children ){
-		if( parent.children.hasOwnProperty( i ) )
-			parent.children[i].style.display = 'inline-block';
-	}
+
+	var vendorURL = window.URL || window.webkitURL;
+	rec.background.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+
+	parent.style.display = 'block';
 	parent.addEventListener( 'click', function( event ){
 		switch( event.target.id ){
 			case 'join':
@@ -144,7 +143,7 @@ Omg.prototype.stop = function(){
 };
 
 Omg.prototype.postFiles = function( videoDataURL ){
-	var rec = this,		
+	var rec = this,
     request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
