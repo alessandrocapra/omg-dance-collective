@@ -247,9 +247,10 @@ var scrollForNewGifs = function(){ omg.scrollForNewGifs(); };
 window.addEventListener( 'scroll', scrollForNewGifs );
 
 (function(){
-	var about = footer = document.querySelector('footer');
+	var grid = document.getElementById('grid'), 
+		about = document.getElementById('about'),
+		footer = document.querySelector('footer');
 	window.addEventListener( 'scroll', function(){
-		var about = document.getElementById('about');
 		if ( window.innerHeight + window.scrollY > grid.offsetTop )
 			footer.className = 'container-fluid down';
 		if ( window.innerHeight + window.scrollY > about.offsetTop )
