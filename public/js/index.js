@@ -101,8 +101,7 @@ Omg.prototype.start = function(){
 Omg.prototype.stop = function(){
 	var rec = this,
 		tracks = rec.stream.getTracks(),
-		parent = document.getElementById( 'final-buttons' ),
-		rec.background.src;
+		parent = document.getElementById( 'final-buttons' );
 	rec.cameraPreview.style.display = 'none';
 
 	var vendorURL = window.URL || window.webkitURL;
