@@ -144,8 +144,7 @@ Omg.prototype.stop = function(){
 };
 
 Omg.prototype.postFiles = function( videoDataURL ){
-	var rec = this,
-		files,
+	var rec = this,		
     request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
@@ -154,14 +153,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
 						alert( 'error in sending video to the server' );
     };
     request.open( 'POST', this.serverUrl + '/stream' );
-		if( typeof FormData !== 'undefined' ){
-			data = new FormData();
-			data.append( 'video', videoDataURL );
-		}
-		else{
-			data = JSON.stringify( { video : videoDataURL } );
-		}
-    request.send( data );
+    request.send( JSON.stringify( { video : videoDataURL } ) );
 };
 
 Omg.prototype.showGifs = function(){
