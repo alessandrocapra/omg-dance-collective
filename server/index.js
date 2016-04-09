@@ -8,6 +8,7 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
+    console.log('request');
     response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
     //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
