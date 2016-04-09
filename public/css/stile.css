@@ -46,15 +46,13 @@ main {
   width: 100%;
   padding-bottom: 4.5vmax; }
   main #intro #final-buttons {
-    display: none; }
-  main #intro .divPulsanti {
-    text-align: center;
-    display: none; }
-  main #intro a.trePulsanti {
-    margin-top: -30vh;
-    display: inline-block;
-    color: #fff;
-    background-color: #0000ff; }
+    display: none;
+    text-align: center; }
+    main #intro #final-buttons .trePulsanti {
+      margin-top: -30vh;
+      display: inline-block;
+      color: #fff;
+      background-color: #0000ff; }
   main #intro video#background {
     position: relative;
     top: 3vmax;

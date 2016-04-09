@@ -69,19 +69,15 @@ main {
 
     #final-buttons {
       display: none;
-    }
-
-    .divPulsanti {
       text-align: center;
-      display: none;
-    }
 
-    a {
-      &.trePulsanti {
-        margin-top:-30vh;
-        display: inline-block;
-        color: #fff;
-        background-color: $blue;
+
+      .trePulsanti {
+          margin-top:-30vh;
+          display: inline-block;
+          color: #fff;
+          background-color: $blue;
+
       }
     }
 
