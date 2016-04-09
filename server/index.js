@@ -13,11 +13,9 @@ var fs = require('fs'),
     switch( url.parse(request.url).pathname ){
       case '/stream':
       	if(request.method == 'POST') {
-          console.log( 'stream in arrivo');
       		var queryData = "";
 
       		request.on( 'data', function( data ) {
-            console.log( 'data');
               queryData += data;
               /*if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
                   queryData = "";
