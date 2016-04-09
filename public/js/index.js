@@ -3,10 +3,10 @@ var Omg = function(){
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	this.serverUrl = 'https://www.omgdancecollective.gq';
-	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	//this.serverUrl = 'http://localhost:8080';
-	//this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'https://www.omgdancecollective.gq';
+	//this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 	this.timeouts = {};
@@ -41,8 +41,8 @@ Omg.prototype.init = function(){
 			   	type: 'webm',
 			   	video: rec.dimensions,
 	    		canvas: rec.dimensions,
-		    	frameInterval: 80,
-		    	bitsPerSecond: 28200,
+		    	frameInterval: 100,
+		    	bitsPerSecond: 5600,
 		    	quality: 1,
 					disableLogs : true
 			});
@@ -145,9 +145,7 @@ Omg.prototype.stop = function(){
 
 Omg.prototype.postFiles = function( videoDataURL ){
 	var rec = this,
-		files = {
-			video : videoDataURL
-    },
+		files,
     request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
@@ -156,7 +154,14 @@ Omg.prototype.postFiles = function( videoDataURL ){
 						alert( 'error in sending video to the server' );
     };
     request.open( 'POST', this.serverUrl + '/stream' );
-    request.send( JSON.stringify( files ) );
+		if( typeof FormData !== 'undefined' ){
+			data = new FormData();
+			data.append( 'video', videoDataURL );
+		}
+		else{
+			data = JSON.stringify( { video : videoDataURL } );
+		}
+    request.send( data );
 };
 
 Omg.prototype.showGifs = function(){

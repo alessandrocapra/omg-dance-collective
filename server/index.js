@@ -8,8 +8,8 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
-    //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    //response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
+    response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
       case '/stream':
       	if(request.method == 'POST') {
@@ -19,12 +19,12 @@ var fs = require('fs'),
       		request.on( 'data', function( data ) {
             console.log( 'data');
               queryData += data;
-              //if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
+              /*if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
                   queryData = "";
                   response.writeHead(413, {'Content-Type': 'text/plain'});
                   response.end();
                   request.connection.destroy();
-              //}
+              }*/
           });
 
       		request.on( 'end', function () {
