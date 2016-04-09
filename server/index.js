@@ -17,6 +17,7 @@ var fs = require('fs'),
       		var queryData = "";
 
       		request.on( 'data', function( data ) {
+            console.log( 'data');
               queryData += data;
               //if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
                   queryData = "";
