@@ -42,7 +42,7 @@ Omg.prototype.init = function(){
 			   	video: rec.dimensions,
 	    		canvas: rec.dimensions,
 		    	frameInterval: 80,
-		    	bitsPerSecond: 28200
+		    	bitsPerSecond: 28200,
 		    	quality: 1,
 					disableLogs : true
 			});
@@ -90,7 +90,7 @@ Omg.prototype.start = function(){
 			}
 			counter--;
 		};
-	
+
 	rec.background.src = 'video/unfearing-long.mp4';
 	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
