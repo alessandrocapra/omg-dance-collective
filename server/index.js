@@ -13,12 +13,13 @@ var fs = require('fs'),
     switch( url.parse(request.url).pathname ){
       case '/stream':
       	if(request.method == 'POST') {
+          console.log( 'stream in arrivo');
       		var queryData = "";
 
       		request.on( 'data', function( data ) {
               queryData += data;
               //if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
-                  console.log( 'request too large' );
+                  console.error( 'request too large' );
                   queryData = "";
                   response.writeHead(413, {'Content-Type': 'text/plain'});
                   response.end();
@@ -27,6 +28,7 @@ var fs = require('fs'),
           });
 
       		request.on( 'end', function () {
+            console.log( 'stream acquisito');
             var
               videoDir = process.cwd() + '/video/',
               gifDir = process.cwd() + '/public/gif/',
@@ -37,7 +39,7 @@ var fs = require('fs'),
       				fileBuffer;
               fs.readdir( gifDir, function( err, files ){
                 if( err ){
-                  console.log( err );
+                  console.error( err );
                   return false;
                 }
                 for( var i in files ){
@@ -55,7 +57,7 @@ var fs = require('fs'),
                 fileBuffer = new Buffer( queryData.video.split(',').pop(), "base64" );
             		fs.writeFile( filePath, fileBuffer, function( err ){
                   if( err ){
-                    console.log( err );
+                    console.error( err );
                     return false;
                   }
                   console.log('salvato file ' + filePath );
