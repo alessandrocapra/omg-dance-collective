@@ -288,6 +288,7 @@ footer {
 
   &.about #movebutton{
     position: static;
+    margin: 0;
     @extend #movebutton:hover;
   }
 

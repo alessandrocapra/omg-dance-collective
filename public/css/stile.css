@@ -163,7 +163,8 @@ footer {
       color: #0000ff;
       font-weight: 700; }
   footer.about #movebutton {
-    position: static; }
+    position: static;
+    margin: 0; }
   footer.about #about-link {
     display: none; }
 
