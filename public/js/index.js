@@ -31,7 +31,8 @@ Omg.prototype.init = function(){
 
 			var vendorURL = window.URL || window.webkitURL;
 			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
-
+			rec.cameraPreview.play();
+			
 			rec.cameraPreview.onerror = function() {
 					alert('error in trasmitting data');
 			};
@@ -105,7 +106,7 @@ Omg.prototype.stop = function(){
 	rec.cameraPreview.style.display = 'none';
 
 	var vendorURL = window.URL || window.webkitURL;
-	rec.background.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+	rec.background.src = vendorURL ? vendorURL.createObjectURL(rec.stream) : rec.stream;
 
 	parent.style.display = 'block';
 	parent.addEventListener( 'click', function( event ){
