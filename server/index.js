@@ -8,7 +8,6 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    console.log('request');
     response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
     //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
@@ -20,7 +19,6 @@ var fs = require('fs'),
       		request.on( 'data', function( data ) {
               queryData += data;
               //if( queryData.length > 1e7 ) { //around 10MBs - it's handled by nginx
-                  console.error( 'request too large' );
                   queryData = "";
                   response.writeHead(413, {'Content-Type': 'text/plain'});
                   response.end();

@@ -22,7 +22,7 @@ Omg.prototype.init = function(){
 	    height: rec.dimensions.height,
 	    mode: "callback",
 	    swffile: "js/fallback/jscam.swf",
-	    quality: 80,
+	    quality: 20,
 			el: rec.cameraPreview.id
 
 	  }, function(stream) {
@@ -151,9 +151,9 @@ Omg.prototype.postFiles = function( videoDataURL ){
     request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
-        }
+        if( request.readyState == 4 )
+					if( request.status != 200)
+						alert( 'error in sending video to the server' );
     };
     request.open( 'POST', this.serverUrl + '/stream' );
     request.send( JSON.stringify( files ) );
