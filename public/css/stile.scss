@@ -265,15 +265,17 @@ footer {
   }
 
   #movebutton {
-    background-color: $blue;
-    color: #ffffff;
-    font-weight:700;
+    background-color: rgba(255,255,255,0);
+    border: 2px solid $blue;
+    color: $blue;
+    font-weight: 700;
+
     position: fixed;
     top: 50%;
     left: 50%;
     width:16vw;
     z-index:1000;
-    border: 2px solid $blue;
+
 
     margin-top:20vh;
     margin-left:-8vw;
@@ -282,10 +284,10 @@ footer {
     &:active,
     &:hover {
       text-decoration: none;
-      background-color: rgba(255,255,255,0);
+      background-color: $blue;
+      color: #ffffff;
+      font-weight:700;
       border: 2px solid $blue;
-      color: $blue;
-      font-weight: 700;
     }
 
 
