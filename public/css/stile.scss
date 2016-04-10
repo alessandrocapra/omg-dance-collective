@@ -28,7 +28,7 @@ header {
   top: 0;
   z-index: 1;
   background-color: #fff;
-  padding: 2vh;
+  padding: 2vh -2vh;
   text-align: center;
 
   h1 {
@@ -36,10 +36,17 @@ header {
     margin: 0;
     font-size: 2vw;
     font-weight:700;
-    color: $blue;
-    border-bottom: 3px solid $blue;
-    padding-bottom: 5px;
-    display: inline;
+    a {
+      color: $blue;
+      border-bottom: 3px solid $blue;
+      padding-bottom: 5px;
+      display: inline;
+
+      &:hover {
+        color: $blue;
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -269,6 +276,7 @@ footer {
 
   a {
     color: $blue;
+    display: inline-block;
 
     &:hover {
       color: $blue;

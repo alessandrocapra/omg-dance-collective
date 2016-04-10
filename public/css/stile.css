@@ -19,17 +19,21 @@ header {
   top: 0;
   z-index: 1;
   background-color: #fff;
-  padding: 2vh;
+  padding: 2vh -2vh;
   text-align: center; }
   header h1 {
     text-align: center;
     margin: 0;
     font-size: 2vw;
-    font-weight: 700;
-    color: #0000ff;
-    border-bottom: 3px solid #0000ff;
-    padding-bottom: 5px;
-    display: inline; }
+    font-weight: 700; }
+    header h1 a {
+      color: #0000ff;
+      border-bottom: 3px solid #0000ff;
+      padding-bottom: 5px;
+      display: inline; }
+      header h1 a:hover {
+        color: #0000ff;
+        text-decoration: none; }
 
 main {
   position: absolute;
@@ -149,7 +153,8 @@ footer {
   height: 4.5vmax;
   padding-top: 2.5vh; }
   footer a {
-    color: #0000ff; }
+    color: #0000ff;
+    display: inline-block; }
     footer a:hover {
       color: #0000ff;
       text-decoration: none;
