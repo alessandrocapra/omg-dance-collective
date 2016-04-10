@@ -5,6 +5,7 @@ $phone-breakpoint: 360px;
 $tablet-breakpoint: 768px;
 $blue: #0000ff;
 
+
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -19,6 +20,16 @@ p,span,a {
     border-bottom: 3px solid $blue;
     padding-bottom: 5px;
   }
+}
+
+.pulsante {
+  background: #fff;
+  color: $blue;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.1vw;
+  font-weight: 700;
+  padding: 1vh 1vw;
 }
 
 header {
@@ -63,61 +74,17 @@ main {
 
   #intro {
 
-    button {
+    #final-buttons {
       display: none;
-    }
-
-    .divPulsanti {
       text-align: center;
-      display: none;
-    }
-
-    a {
-      &.pulsante {
-        background: #fff;
-        color: $blue;
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 1.1vw;
-        font-weight: 700;
-        padding: 1vh 1vw;
-      }
 
 
-      &#movebutton {
-        background-color: $blue;
-        color: #ffffff;
-        font-weight:700;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width:16vw;
-        z-index:1000;
-        border: 2px solid $blue;
+      .trePulsanti {
+          margin-top:-30vh;
+          display: inline-block;
+          color: #fff;
+          background-color: $blue;
 
-        margin-top:20vh;
-        margin-left:-8vw;
-        //padding:1vh 0;
-        //transition: all 0.2s ease-in-out;
-
-        &:hover {
-          text-decoration: none;
-          background-color: rgba(255,255,255,0);
-          border: 2px solid $blue;
-          color: $blue;
-          font-weight: 700;
-        }
-
-        &:active {
-          @extend a#movebutton:hover;
-        }
-      }
-
-      &.trePulsanti {
-        margin-top:-30vh;
-        display: inline-block;
-        color: #fff;
-        background-color: $blue;
       }
     }
 
@@ -135,7 +102,7 @@ main {
         display: block;
         margin: 0 auto;
       }
-      
+
       &#camera {
         position: absolute;
         right:3vw;
@@ -273,6 +240,7 @@ footer {
   width: 100%;
   height: 4.5vmax;
   padding-top:2.5vh;
+  font-weight: 700;
 
   a {
     color: $blue;
@@ -285,6 +253,54 @@ footer {
       padding-bottom: 5px;
     }
   }
+
+  #watch-tutorial-link,
+  #about-link{
+    display: none
+  }
+
+  &.down #watch-tutorial-link,
+  &.down #about-link{
+    display: block
+  }
+
+  #movebutton {
+    background-color: $blue;
+    color: #ffffff;
+    font-weight:700;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:16vw;
+    z-index:1000;
+    border: 2px solid $blue;
+
+    margin-top:20vh;
+    margin-left:-8vw;
+    //padding:1vh 0;
+    //transition: all 0.2s ease-in-out;
+    &:active,
+    &:hover {
+      text-decoration: none;
+      background-color: rgba(255,255,255,0);
+      border: 2px solid $blue;
+      color: $blue;
+      font-weight: 700;
+    }
+
+
+  }
+
+  &.about #movebutton{
+    position: static;
+    margin: 0;
+    @extend #movebutton:hover;
+  }
+
+  &.about #about-link{
+    display: none;
+  }
+
 
   //h4 {
   //  margin: 0;

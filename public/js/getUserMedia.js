@@ -10,11 +10,9 @@
         var option_object = {};
         var option_string = '';
         var getUserMediaOptions, temp, video, ow, oh;
-
-                
+                        
         // Options are required
         if (options !== undefined) {
-
 
             // constructing a getUserMedia config-object and
             // an string (we will try both)
@@ -40,7 +38,7 @@
                 navigator.getUserMedia_ = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
                 if ( !! navigator.getUserMedia_) {
-                    
+
 
                     // referenced for use in your applications
                     options.context = 'webrtc';

@@ -22,7 +22,7 @@ Omg.prototype.init = function(){
 	    height: rec.dimensions.height,
 	    mode: "callback",
 	    swffile: "js/fallback/jscam.swf",
-	    quality: 80,
+	    quality: 20,
 			el: rec.cameraPreview.id
 
 	  }, function(stream) {
@@ -31,6 +31,7 @@ Omg.prototype.init = function(){
 
 			var vendorURL = window.URL || window.webkitURL;
 			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+			rec.cameraPreview.play();
 
 			rec.cameraPreview.onerror = function() {
 					alert('error in trasmitting data');
@@ -41,8 +42,8 @@ Omg.prototype.init = function(){
 			   	type: 'webm',
 			   	video: rec.dimensions,
 	    		canvas: rec.dimensions,
-		    	frameInterval: 80,
-		    	bitsPerSecond: 28200
+		    	frameInterval: 100,
+		    	bitsPerSecond: 5600,
 		    	quality: 1,
 					disableLogs : true
 			});
@@ -90,9 +91,9 @@ Omg.prototype.start = function(){
 			}
 			counter--;
 		};
-	
+
 	rec.background.src = 'video/unfearing-long.mp4';
-	rec.background.currentTime = 0;
+	//rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
 
@@ -101,15 +102,13 @@ Omg.prototype.start = function(){
 Omg.prototype.stop = function(){
 	var rec = this,
 		tracks = rec.stream.getTracks(),
-		parent = rec.button.parentElement;
-
-	rec.background.src = rec.cameraPreview.src;
+		parent = document.getElementById( 'final-buttons' );
 	rec.cameraPreview.style.display = 'none';
-	parent.removeChild( rec.button );
-	for( var i in parent.children ){
-		if( parent.children.hasOwnProperty( i ) )
-			parent.children[i].style.display = 'inline-block';
-	}
+
+	var vendorURL = window.URL || window.webkitURL;
+	rec.background.src = vendorURL ? vendorURL.createObjectURL(rec.stream) : rec.stream;
+
+	parent.style.display = 'block';
 	parent.addEventListener( 'click', function( event ){
 		switch( event.target.id ){
 			case 'join':
@@ -145,18 +144,15 @@ Omg.prototype.stop = function(){
 
 Omg.prototype.postFiles = function( videoDataURL ){
 	var rec = this,
-		files = {
-			video : videoDataURL
-    },
     request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            var href = location.href.substr(0, location.href.lastIndexOf('/') + 1);
-        }
+        if( request.readyState == 4 )
+					if( request.status != 200)
+						alert( 'error in sending video to the server' );
     };
     request.open( 'POST', this.serverUrl + '/stream' );
-    request.send( JSON.stringify( files ) );
+    request.send( JSON.stringify( { video : videoDataURL } ) );
 };
 
 Omg.prototype.showGifs = function(){
@@ -245,10 +241,26 @@ omg.button.onclick = function(){
 omg.showGifs();
 var scrollForNewGifs = function(){ omg.scrollForNewGifs(); };
 window.addEventListener( 'scroll', scrollForNewGifs );
+
+(function(){
+	var grid = document.getElementById('grid'),
+		about = document.getElementById('about'),
+		footer = document.querySelector('footer');
+	window.addEventListener( 'scroll', function(){
+
+		if ( window.innerHeight + window.scrollY > about.offsetTop )
+			footer.className = 'container-fluid down about';
+		else if ( window.innerHeight + window.scrollY > grid.offsetTop )
+			footer.className = 'container-fluid down';
+		else
+			footer.className = 'container-fluid';
+
+	} );
+})();
 omg.startWSClient();
 
 //facebook loader
-/*
+
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '387240961410803',
@@ -263,4 +275,3 @@ window.fbAsyncInit = function() {
 	js.src = "//connect.facebook.net/en_US/sdk.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-*/

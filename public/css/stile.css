@@ -12,6 +12,15 @@ p, span, a {
     border-bottom: 3px solid #0000ff;
     padding-bottom: 5px; }
 
+.pulsante {
+  background: #fff;
+  color: #0000ff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.1vw;
+  font-weight: 700;
+  padding: 1vh 1vw; }
+
 header {
   height: 4.5vmax;
   width: 100%;
@@ -40,42 +49,14 @@ main {
   overflow: auto;
   width: 100%;
   padding-bottom: 4.5vmax; }
-  main #intro button {
-    display: none; }
-  main #intro .divPulsanti {
-    text-align: center;
-    display: none; }
-  main #intro a.pulsante {
-    background: #fff;
-    color: #0000ff;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.1vw;
-    font-weight: 700;
-    padding: 1vh 1vw; }
-  main #intro a#movebutton {
-    background-color: #0000ff;
-    color: #ffffff;
-    font-weight: 700;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 16vw;
-    z-index: 1000;
-    border: 2px solid #0000ff;
-    margin-top: 20vh;
-    margin-left: -8vw; }
-    main #intro a#movebutton:hover, main #intro a#movebutton:active {
-      text-decoration: none;
-      background-color: rgba(255, 255, 255, 0);
-      border: 2px solid #0000ff;
-      color: #0000ff;
-      font-weight: 700; }
-  main #intro a.trePulsanti {
-    margin-top: -30vh;
-    display: inline-block;
-    color: #fff;
-    background-color: #0000ff; }
+  main #intro #final-buttons {
+    display: none;
+    text-align: center; }
+    main #intro #final-buttons .trePulsanti {
+      margin-top: -30vh;
+      display: inline-block;
+      color: #fff;
+      background-color: #0000ff; }
   main #intro video#background {
     position: relative;
     top: 3vmax;
@@ -151,7 +132,8 @@ footer {
   bottom: 0;
   width: 100%;
   height: 4.5vmax;
-  padding-top: 2.5vh; }
+  padding-top: 2.5vh;
+  font-weight: 700; }
   footer a {
     color: #0000ff;
     display: inline-block; }
@@ -160,6 +142,34 @@ footer {
       text-decoration: none;
       border-bottom: 3px solid #0000ff;
       padding-bottom: 5px; }
+  footer #watch-tutorial-link,
+  footer #about-link {
+    display: none; }
+  footer.down #watch-tutorial-link, footer.down #about-link {
+    display: block; }
+  footer #movebutton {
+    background-color: #0000ff;
+    color: #ffffff;
+    font-weight: 700;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 16vw;
+    z-index: 1000;
+    border: 2px solid #0000ff;
+    margin-top: 20vh;
+    margin-left: -8vw; }
+    footer #movebutton:active, footer #movebutton:hover, footer.about #movebutton {
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0);
+      border: 2px solid #0000ff;
+      color: #0000ff;
+      font-weight: 700; }
+  footer.about #movebutton {
+    position: static;
+    margin: 0; }
+  footer.about #about-link {
+    display: none; }
 
 /* Media queries */
 @media (max-device-width: 360px) {
