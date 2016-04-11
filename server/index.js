@@ -139,5 +139,7 @@ wsServer.on('request', function(request) {
   connection.on('close', function(reasonCode, description) {
         openWss.splice(wid, 1); //remove from array
   });
+  console.log( wid );
+  console.log( openWss.length );
 
 });
