@@ -3,10 +3,10 @@ var Omg = function(){
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	this.serverUrl = 'https://www.omgdancecollective.gq';
-	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	//this.serverUrl = 'http://localhost:8080';
-	//this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'https://www.omgdancecollective.gq';
+	//this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 	this.timeouts = {};
@@ -125,6 +125,7 @@ Omg.prototype.stop = function(){
 		switch( event.target.id ){
 			case 'upload':
 				rec.postFiles();
+				parent.removeChild( event.target );
 			break;
 
 			case 'again':
@@ -231,6 +232,7 @@ Omg.prototype.startWSClient = function(){
 		return false;
 	connection = new WebSocket( this.wsUrl, 'gif' );
 	connection.onmessage = function(e){
+		console.log( 'ricevuto ws');
 		var lastRow = rec.gifContainer.lastChild, container;
 		if( lastRow.children.length >= 4 ){
 			container = document.createElement('div');
@@ -241,6 +243,11 @@ Omg.prototype.startWSClient = function(){
 			container = lastRow;
     container.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
 	}
+
+	window.onbeforeunload = function() {
+    connection.onclose = function () {}; // disable onclose handler first
+    connection.close()
+	};
 }
 omg = new Omg();
 

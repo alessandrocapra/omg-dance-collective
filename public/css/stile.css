@@ -160,7 +160,7 @@ footer {
     display: none; }
   footer.down #watch-tutorial-link, footer.down #about-link {
     display: inline; }
-  footer #movebutton {
+  footer #movebutton, footer.about #movebutton {
     background-color: rgba(255, 255, 255, 0);
     border: 2px solid #0000ff;
     color: #0000ff;
@@ -172,7 +172,7 @@ footer {
     z-index: 1000;
     margin-top: 20vh;
     margin-left: -8vw; }
-    footer #movebutton:active, footer #movebutton:hover, footer.about #movebutton {
+    footer #movebutton:active, footer #movebutton:hover, footer.about #movebutton:active, footer.about #movebutton:hover {
       text-decoration: none;
       background-color: #0000ff;
       color: #ffffff;

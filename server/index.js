@@ -8,8 +8,8 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
-    //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    //response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
+    response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
       case '/stream':
       	if(request.method == 'POST') {
@@ -61,13 +61,12 @@ var fs = require('fs'),
                   console.log('salvato file ' + filePath );
                   exec( './server/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
                     if( err ){
-                      console.log( err );
+                      console.error( err );
                       return false
                     }
                     console.log('salvato file ' + gifPath );
                     fs.unlink( filePath );
                     for( var i in openWss ){
-                      console.log( 'inviato a ws ' + i );
                       openWss[i].sendUTF( fileName + '.gif' );
                     }
                   });
@@ -136,12 +135,9 @@ wsServer.on('request', function(request) {
   var wid = globalWsId++,
   connection = request.accept('gif', request.origin);
 
-  connection.setTimeout(timeout[, callback])
   openWss[ wid ] = connection;
   connection.on('close', function(reasonCode, description) {
         openWss.splice(wid, 1); //remove from array
   });
-  console.log( wid );
-  console.log( openWss.length );
 
 });

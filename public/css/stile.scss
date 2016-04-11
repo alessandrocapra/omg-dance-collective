@@ -280,7 +280,7 @@ footer {
   &.down #about-link{
     display: inline;
   }
-  
+
   #movebutton {
     background-color: rgba(255,255,255,0);
     border: 2px solid $blue;
@@ -311,7 +311,12 @@ footer {
   &.about #movebutton{
     position: static;
     margin: 0;
-    @extend #movebutton:hover;
+    @extend #movebutton;
+    
+    &:active,
+    &:hover {
+      @extend #movebutton:hover;
+    }
   }
 
   &.about #about-link{
