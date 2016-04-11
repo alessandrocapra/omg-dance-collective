@@ -13,13 +13,20 @@ p, span, a {
     padding-bottom: 5px; }
 
 .pulsante {
-  background: #fff;
+  background-color: transparent;
   color: #0000ff;
   text-transform: uppercase;
   text-align: center;
   font-size: 1.1vw;
   font-weight: 700;
-  padding: 1vh 1vw; }
+  padding: 1vh 1vw;
+  border: 2px solid #0000ff; }
+  .pulsante:active, .pulsante:hover {
+    text-decoration: none;
+    background-color: #0000ff;
+    color: #ffffff;
+    font-weight: 700;
+    border: 2px solid #0000ff; }
 
 header {
   height: 4.5vmax;
@@ -53,10 +60,8 @@ main {
     display: none;
     text-align: center; }
     main #intro #final-buttons .trePulsanti {
-      margin-top: -30vh;
-      display: inline-block;
-      color: #fff;
-      background-color: #0000ff; }
+      margin-top: -45vh;
+      display: inline-block; }
   main #intro video#background {
     position: relative;
     top: 3vmax;
@@ -70,8 +75,9 @@ main {
   main #intro video#camera {
     position: absolute;
     right: 3vw;
-    top: 3vw;
-    height: 35vh; }
+    top: 1vw;
+    height: 57vh;
+    z-index: 1001; }
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
@@ -141,12 +147,12 @@ footer {
       color: #0000ff;
       text-decoration: none;
       border-bottom: 3px solid #0000ff;
-      padding-bottom: 5px; }
+      padding-bottom: 3px; }
   footer #watch-tutorial-link,
   footer #about-link {
     display: none; }
   footer.down #watch-tutorial-link, footer.down #about-link {
-    display: block; }
+    display: inline; }
   footer #movebutton {
     background-color: rgba(255, 255, 255, 0);
     border: 2px solid #0000ff;

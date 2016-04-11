@@ -23,13 +23,23 @@ p,span,a {
 }
 
 .pulsante {
-  background: #fff;
+  background-color: transparent;
   color: $blue;
   text-transform: uppercase;
   text-align: center;
   font-size: 1.1vw;
   font-weight: 700;
   padding: 1vh 1vw;
+  border:2px solid $blue;
+
+  &:active,
+  &:hover {
+    text-decoration: none;
+    background-color: $blue;
+    color: #ffffff;
+    font-weight:700;
+    border: 2px solid $blue;
+  }
 }
 
 header {
@@ -80,11 +90,10 @@ main {
 
 
       .trePulsanti {
-          margin-top:-30vh;
+          margin-top:-45vh;
           display: inline-block;
-          color: #fff;
-          background-color: $blue;
-
+          //color: #fff;
+          //background-color: $blue;
       }
     }
 
@@ -106,10 +115,9 @@ main {
       &#camera {
         position: absolute;
         right:3vw;
-        top: 3vw;
-        //width:15vw;
-        height:35vh;
-        //background-color: red;
+        top: 1vw;
+        height:57vh;
+        z-index: 1001 ;
       }
     }
   }
@@ -250,20 +258,20 @@ footer {
       color: $blue;
       text-decoration: none;
       border-bottom: 3px solid $blue;
-      padding-bottom: 5px;
+      padding-bottom: 3px;
     }
   }
 
   #watch-tutorial-link,
   #about-link{
-    display: none
+    display: none;
   }
 
   &.down #watch-tutorial-link,
   &.down #about-link{
-    display: block
+    display: inline;
   }
-
+  
   #movebutton {
     background-color: rgba(255,255,255,0);
     border: 2px solid $blue;
@@ -289,8 +297,6 @@ footer {
       font-weight:700;
       border: 2px solid $blue;
     }
-
-
   }
 
   &.about #movebutton{

@@ -43,9 +43,6 @@ Omg.prototype.init = function(){
 			   	type: 'webm',
 			   	video: rec.dimensions,
 	    		canvas: rec.dimensions,
-		    	frameInterval: 100,
-		    	bitsPerSecond: 5600,
-		    	quality: 1,
 					disableLogs : true
 			});
 	}, function(error) {
@@ -61,7 +58,7 @@ Omg.prototype.ready = function(){
 	var rec = this,
 		counter = 5,
 		func = function(){
-			rec.button.innerHTML = 'Ready?! ' + counter;
+			rec.button.innerHTML = 'Ready?! ' + (counter > 1 ? counter : '');
 
 			if( !counter ){
 				rec.start();
@@ -79,7 +76,7 @@ Omg.prototype.ready = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 1,
+		counter = 10,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ';
 
@@ -114,7 +111,10 @@ Omg.prototype.stop = function(){
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
 		var videoEl = document.createElement('video');
 		rec.videoDataURL = videoDataURL;
+		videoEl.id = 'preview';
+		videoEl.loop = 'loop';
 		videoEl.src = videoDataURL;
+		videoEl.play();
 
 		rec.background.parentNode.insertBefore( videoEl, rec.background );
 
@@ -155,7 +155,7 @@ Omg.prototype.stop = function(){
 Omg.prototype.postFiles = function(){
 	var rec = this,
     request = new XMLHttpRequest();
-		if( typeof( rec.videoDataURL === 'undefined' ) )
+		if( typeof rec.videoDataURL === 'undefined' )
 			return false;
 
     request.onreadystatechange = function() {

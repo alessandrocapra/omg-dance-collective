@@ -67,6 +67,7 @@ var fs = require('fs'),
                     console.log('salvato file ' + gifPath );
                     fs.unlink( filePath );
                     for( var i in openWss ){
+                      console.log( 'inviato a ws ' + i );
                       openWss[i].sendUTF( fileName + '.gif' );
                     }
                   });
