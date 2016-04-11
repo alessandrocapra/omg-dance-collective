@@ -130,14 +130,14 @@ Omg.prototype.stop = function(){
 	});
 
 	rec.recordVideo.stopRecording();
-	if( typeof rec.stream.stop === 'function' )
+	/*if( typeof rec.stream.stop === 'function' )
 		rec.stream.stop();
 	else{
 		for( var i in tracks ){
 			if( tracks.hasOwnProperty( i ) )
 				tracks[i].stop();
 		}
-	}
+	}*/
 	rec.recordVideo.getDataURL( function( videoDataURL ) {
         rec.postFiles( videoDataURL );
     });
