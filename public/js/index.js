@@ -3,10 +3,10 @@ var Omg = function(){
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	//this.serverUrl = 'https://www.omgdancecollective.gq';
-	//this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	this.serverUrl = 'http://localhost:8080';
-	this.wsUrl = 'ws://localhost:8080/ws';
+	this.serverUrl = 'https://www.omgdancecollective.gq';
+	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	//this.serverUrl = 'http://localhost:8080';
+	//this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 	this.timeouts = {};
@@ -76,7 +76,7 @@ Omg.prototype.ready = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 10,
+		counter = 39,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ';
 

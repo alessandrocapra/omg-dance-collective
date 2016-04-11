@@ -8,8 +8,8 @@ var fs = require('fs'),
   openWss = [],
 
   httpServer = http.createServer( function( request, response ){
-    //response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    response.setHeader('Access-Control-Allow-Origin', 'https://www.omgdancecollective.gq');
+    //response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
     switch( url.parse(request.url).pathname ){
       case '/stream':
       	if(request.method == 'POST') {
@@ -135,6 +135,8 @@ httpServer.listen(8080);
 wsServer.on('request', function(request) {
   var wid = globalWsId++,
   connection = request.accept('gif', request.origin);
+
+  connection.setTimeout(timeout[, callback])
   openWss[ wid ] = connection;
   connection.on('close', function(reasonCode, description) {
         openWss.splice(wid, 1); //remove from array
