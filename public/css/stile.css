@@ -69,6 +69,11 @@ main {
     color: #0000ff;
     margin-left: -36.5%;
     border: 1px solid #0000ff; }
+    main #intro #no-rec p, main #intro #no-rec a {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      margin-left: -25%; }
   main #intro #final-buttons {
     display: none;
     text-align: center; }
