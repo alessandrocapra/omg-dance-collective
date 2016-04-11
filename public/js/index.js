@@ -247,12 +247,12 @@ Omg.prototype.startWSClient = function(){
 		var lastRow = rec.gifContainer.lastChild, container;
 		if( lastRow.children.length >= 4 ){
 			container = document.createElement('div');
-			container.class = 'row';
+			container.className = 'row';
 			rec.gifContainer.appendChild( container );
 		}
 		else
 			container = lastRow;
-    container.innerHTML = rec.gifContainer.innerHTML + rec.getGifStr( e.data );
+    container.innerHTML = container.innerHTML + rec.getGifStr( e.data );
 	}
 
 	window.onbeforeunload = function() {
