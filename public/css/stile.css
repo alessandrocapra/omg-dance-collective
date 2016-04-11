@@ -60,7 +60,7 @@ main {
     position: absolute;
     top: 3vmax;
     left: 50%;
-    min-height: 50vh;
+    min-height: calc(100vh - 6vmax);
     width: 73%;
     height: auto;
     z-index: +1002;
