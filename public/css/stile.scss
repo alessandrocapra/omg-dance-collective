@@ -88,7 +88,7 @@ main {
       position: absolute;
       top: 3vmax;
       left:50%;
-      min-height: 50vh;
+      min-height: calc(100vh - 6vmax);
       //min-width: 66vw;
       width: 73%;
       height: auto;
