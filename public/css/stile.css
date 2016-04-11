@@ -56,6 +56,16 @@ main {
   overflow: auto;
   width: 100%;
   padding-bottom: 4.5vmax; }
+  main #intro #no-rec {
+    position: relative;
+    top: 3vmax;
+    min-height: 50vh;
+    width: 73%;
+    height: auto;
+    z-index: -100;
+    overflow: hidden;
+    background-color: #fff;
+    color: #0000ff; }
   main #intro #final-buttons {
     display: none;
     text-align: center; }
