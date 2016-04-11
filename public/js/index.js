@@ -3,7 +3,7 @@ var Omg = function(){
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	this.serverUrl = window.location.origin + ':8080';
+	this.serverUrl = window.location.origin;
 	this.wsUrl = 'ws://' + window.location.host + '/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
@@ -143,10 +143,12 @@ Omg.prototype.stop = function(){
 				break;
 
 			case 'share':
+				window.open( 'http://www.facebook.com/sharer/sharer.php?u=' + rec.serverUrl, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+				/*
 				FB.ui({
 					  method: 'share',
 					  href: location.href,
-					}, function(response){});
+					}, function(response){});*/
 				break;
 		}
 	});
