@@ -57,13 +57,13 @@ main {
   width: 100%;
   padding-bottom: 4.5vmax; }
   main #intro #no-rec {
-    position: relative;
-    top: 3.5vmax;
+    position: absolute;
+    top: 3vmax;
     left: 50%;
     min-height: 50vh;
     width: 73%;
     height: auto;
-    z-index: -100;
+    z-index: +1002;
     overflow: hidden;
     background-color: #fff;
     color: #0000ff;
