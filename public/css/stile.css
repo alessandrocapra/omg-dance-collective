@@ -58,7 +58,7 @@ main {
   padding-bottom: 4.5vmax; }
   main #intro #no-rec {
     position: relative;
-    top: 3vmax;
+    top: 3.5vmax;
     left: 50%;
     min-height: 50vh;
     width: 73%;
@@ -67,7 +67,8 @@ main {
     overflow: hidden;
     background-color: #fff;
     color: #0000ff;
-    margin-left: -36.5%; }
+    margin-left: -36.5%;
+    border: 1px solid #0000ff; }
   main #intro #final-buttons {
     display: none;
     text-align: center; }
