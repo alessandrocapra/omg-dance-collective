@@ -66,7 +66,7 @@ Omg.prototype.init = function(){
 
 Omg.prototype.ready = function(){
 	var rec = this,
-		counter = 1,
+		counter = 5,
 		func = function(){
 			rec.button.innerHTML = 'Ready?! ' + (counter > 1 ? counter : '');
 
@@ -86,7 +86,7 @@ Omg.prototype.ready = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 5,
+		counter = 39,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ';
 
