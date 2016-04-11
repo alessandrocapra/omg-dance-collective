@@ -70,7 +70,7 @@ main {
     margin-left: -36.5%;
     border: 1px solid #0000ff; }
     main #intro #no-rec p, main #intro #no-rec a {
-      position: relative;
+      position: absolute;
       top: 50%;
       left: 50%;
       margin-left: -25%; }
