@@ -3,10 +3,10 @@ var Omg = function(){
 	this.cameraPreview = document.getElementById('camera');
 	this.gifContainer = document.getElementById('grid');
 	this.background = document.getElementById('background');
-	this.serverUrl = 'https://www.omgdancecollective.gq';
-	this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
-	//this.serverUrl = 'http://localhost:8080';
-	//this.wsUrl = 'ws://localhost:8080/ws';
+	//this.serverUrl = 'https://www.omgdancecollective.gq';
+	//this.wsUrl = 'wss://www.omgdancecollective.gq/ws';
+	this.serverUrl = 'http://localhost:8080';
+	this.wsUrl = 'ws://localhost:8080/ws';
 	this.dimensions =  { width: 340, height: 240 }
 	this.wait = false;
 	this.timeouts = {};
@@ -79,7 +79,7 @@ Omg.prototype.ready = function(){
 
 Omg.prototype.start = function(){
 	var rec = this,
-		counter = 39,
+		counter = 1,
 		func = function(){
 			rec.button.innerHTML = 'Dance!! ';
 
@@ -93,7 +93,7 @@ Omg.prototype.start = function(){
 			counter--;
 		};
 
-	
+
 	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
@@ -104,16 +104,27 @@ Omg.prototype.stop = function(){
 	var rec = this,
 		tracks = rec.stream.getTracks(),
 		parent = document.getElementById( 'final-buttons' );
+
+	rec.button.style.display = 'none';
 	rec.cameraPreview.style.display = 'none';
 
-	var vendorURL = window.URL || window.webkitURL;
-	rec.background.src = vendorURL ? vendorURL.createObjectURL(rec.stream) : rec.stream;
+	rec.background.pause();
+
+	rec.recordVideo.stopRecording();
+	rec.recordVideo.getDataURL( function( videoDataURL ) {
+		var videoEl = document.createElement('video');
+		rec.videoDataURL = videoDataURL;
+		videoEl.src = videoDataURL;
+
+		rec.background.parentNode.insertBefore( videoEl, rec.background );
+
+	});
 
 	parent.style.display = 'block';
 	parent.addEventListener( 'click', function( event ){
 		switch( event.target.id ){
-			case 'join':
-				window.location.href = '#gif-containerer';
+			case 'upload':
+				rec.postFiles();
 			break;
 
 			case 'again':
@@ -129,7 +140,7 @@ Omg.prototype.stop = function(){
 		}
 	});
 
-	rec.recordVideo.stopRecording();
+
 	/*if( typeof rec.stream.stop === 'function' )
 		rec.stream.stop();
 	else{
@@ -138,14 +149,14 @@ Omg.prototype.stop = function(){
 				tracks[i].stop();
 		}
 	}*/
-	rec.recordVideo.getDataURL( function( videoDataURL ) {
-        rec.postFiles( videoDataURL );
-    });
+
 };
 
-Omg.prototype.postFiles = function( videoDataURL ){
+Omg.prototype.postFiles = function(){
 	var rec = this,
     request = new XMLHttpRequest();
+		if( typeof( rec.videoDataURL === 'undefined' ) )
+			return false;
 
     request.onreadystatechange = function() {
         if( request.readyState == 4 )
@@ -153,7 +164,7 @@ Omg.prototype.postFiles = function( videoDataURL ){
 						alert( 'error in sending video to the server' );
     };
     request.open( 'POST', this.serverUrl + '/stream' );
-    request.send( JSON.stringify( { video : videoDataURL } ) );
+    request.send( JSON.stringify( { video : rec.videoDataURL } ) );
 };
 
 Omg.prototype.showGifs = function(){
