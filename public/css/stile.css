@@ -59,13 +59,15 @@ main {
   main #intro #no-rec {
     position: relative;
     top: 3vmax;
+    left: 50%;
     min-height: 50vh;
     width: 73%;
     height: auto;
     z-index: -100;
     overflow: hidden;
     background-color: #fff;
-    color: #0000ff; }
+    color: #0000ff;
+    margin-left: -36.5%; }
   main #intro #final-buttons {
     display: none;
     text-align: center; }

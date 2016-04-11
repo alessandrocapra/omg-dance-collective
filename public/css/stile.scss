@@ -87,6 +87,7 @@ main {
     #no-rec {
       position: relative;
       top: 3vmax;
+      left:50%;
       min-height: 50vh;
       //min-width: 66vw;
       width: 73%;
@@ -95,6 +96,7 @@ main {
       overflow: hidden;
       background-color: #fff;
       color: $blue;
+      margin-left:-36.5%;
     }
 
     #final-buttons {
