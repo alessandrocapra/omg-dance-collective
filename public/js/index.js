@@ -46,10 +46,22 @@ Omg.prototype.init = function(){
 					disableLogs : true
 			});
 	}, function(error) {
+		var el, container, a;
 		if( typeof error !== 'undefined' && error.message )
 			alert( error.message );
-		else
-			alert( 'It seems that your computer doesn\'t support recording videos through the browser. Please try again with a different browser, such as Firefox or Chrome!' );
+		else{
+			el = document.createElement( 'div' );
+			el.id = 'no-rec';
+			container = document.getElementById( 'intro' );
+			a = document.createElement( 'a' );
+			a.href = 'javascript:void(0)';
+			a.onclick = function(){ container.removeChild( el ) };
+			a.innerHTML = 'Watch video';
+			a.className = 'pulsante';
+			el.innerHTML = '<p>Your browser does not support webcam record<br>To record your dance please use Google Chrome or Firefox</p>';
+			el.appendChild( a );
+			container.insertBefore( el, container.children[0] );
+		}
 	});
 
 }
