@@ -123,11 +123,13 @@ main {
       padding-right: 2.25vmax; }
     main #about .col-sm-6:last-child {
       padding-left: 2.25vmax; }
-    main #about p, main #about span {
+    main #about p {
+      text-align: justify;
+      margin-bottom: 10vh; }
+    main #about span {
       text-align: justify; }
     main #about a {
       font-weight: 700;
-      font-style: italic;
       border-bottom: 3px solid #0000ff;
       padding-bottom: 5px;
       color: #0000ff; }

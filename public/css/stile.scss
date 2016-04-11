@@ -218,13 +218,17 @@ main {
       padding-left:2.25vmax;
     }
 
-    p, span {
+    p{
+      text-align: justify;
+      margin-bottom:10vh;
+    }
+
+    span {
       text-align: justify;
     }
 
     a {
       font-weight: 700;
-      font-style: italic;
       border-bottom: 3px solid $blue;
       padding-bottom: 5px;
       color: $blue;
