@@ -30,6 +30,7 @@ Omg.prototype.init = function(){
 
 
 			var vendorURL = window.URL || window.webkitURL;
+			rec.background.src = 'video/unfearing-short.mp4';
 			rec.cameraPreview.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
 			rec.cameraPreview.play();
 
@@ -92,8 +93,8 @@ Omg.prototype.start = function(){
 			counter--;
 		};
 
-	rec.background.src = 'video/unfearing-long.mp4';
-	//rec.background.currentTime = 0;
+	
+	rec.background.currentTime = 0;
 	rec.recordVideo.startRecording();
 	rec.timeouts['start'] = setTimeout( func , 1000 );
 
