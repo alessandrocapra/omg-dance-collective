@@ -119,6 +119,15 @@ main {
         height:57vh;
         z-index: 1001 ;
       }
+
+      &#preview {
+        position: absolute;
+        top:3%;
+        left: 50%;
+        height:55vh;
+        width: 40vw;
+        margin-left:-20vw;
+      }
     }
   }
 

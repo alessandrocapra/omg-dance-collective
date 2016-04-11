@@ -78,6 +78,13 @@ main {
     top: 1vw;
     height: 57vh;
     z-index: 1001; }
+  main #intro video#preview {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    height: 55vh;
+    width: 40vw;
+    margin-left: -20vw; }
   main #grid {
     padding-top: 10vh; }
     main #grid .row {
