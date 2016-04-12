@@ -177,15 +177,19 @@ Omg.prototype.postFiles = function(){
 
 	progressEl.id = 'progress';
 	progressEl.innerHTML = 'please wait for upload to finish..';
-	percEl.id = 'perc';
-	percEl.innerHTML = '0%';
-	progressEl.appendChild( percEl );
+	if( typeof request.onprogress !== 'undefined' ){
+		percEl.id = 'perc';
+		percEl.innerHTML = '0%';
+		progressEl.appendChild( percEl );
+		request.onprogress = function( evt ){
+			if (evt.lengthComputable)
+	     		percEl.innerHTML = (evt.loaded / evt.total) * 100 + '%';
+		};
+	}
+
 	rec.background.parentNode.insertBefore( progressEl, rec.background );
 
-	request.onprogress = function( evt ){
-		if (evt.lengthComputable)
-     		percEl.innerHTML = (evt.loaded / evt.total) * 100 + '%';
-	};
+	
     request.onreadystatechange = function() {
         if( request.readyState == 4 )
 			if( request.status == 200)
