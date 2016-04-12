@@ -19,7 +19,7 @@ Omg.prototype.init = function(){
 	    width: rec.dimensions.width,
 	    height: rec.dimensions.height,
 	    mode: "callback",
-	    //noFallback: true,
+	    noFallback: true,
 	    //swffile: "js/fallback/jscam.swf",
 	    quality: 20,
 		el: rec.cameraPreview.id
