@@ -108,6 +108,13 @@ main {
     height: 55vh;
     width: 40vw;
     margin-left: -20vw; }
+  main #intro video#progress {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    width: 40vw;
+    margin-left: -20vw;
+    background: rgba(255, 255, 255, 0.5); }
   main #grid {
     padding-top: 10vh; }
     main #grid .row {

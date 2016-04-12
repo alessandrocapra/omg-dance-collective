@@ -159,6 +159,15 @@ main {
         width: 40vw;
         margin-left:-20vw;
       }
+
+      &#progress{
+        position: absolute;
+        top:3%;
+        left: 50%;
+        width: 40vw;
+        margin-left:-20vw;
+        background: rgba(255,255,255,0.5);
+      }
     }
   }
 
@@ -347,7 +356,7 @@ footer {
     position: static;
     margin: 0;
     @extend #movebutton;
-    
+
     &:active,
     &:hover {
       @extend #movebutton:hover;
