@@ -67,7 +67,7 @@ Omg.prototype.init = function(){
 
 Omg.prototype.ready = function(){
 	var rec = this,
-		counter = 5,
+		counter = 9,
 		func = function(){
 			rec.button.innerHTML = 'Ready?! ' + (counter > 1 ? counter : '');
 
@@ -168,14 +168,30 @@ Omg.prototype.stop = function(){
 
 Omg.prototype.postFiles = function(){
 	var rec = this,
-    request = new XMLHttpRequest();
-		if( typeof rec.videoDataURL === 'undefined' )
-			return false;
+		progressEl = document.createElement('div'),
+		percEl = document.createElement('span'),
+    	request = new XMLHttpRequest();
 
+	if( typeof rec.videoDataURL === 'undefined' )
+		return false;
+
+	progressEl.id = 'progress';
+	progressEl.innerHTML = 'please wait for upload to finish..';
+	percEl.id = 'perc';
+	percEl.innerHTML = '0%';
+	progressEl.appendChild( percEl );
+	rec.background.parentNode.insertBefore( progressEl, rec.background );
+
+	request.onprogress( function( evt ){
+		if (evt.lengthComputable)
+     		percEl.innerHTML = (evt.loaded / evt.total) * 100 + '%';
+	});
     request.onreadystatechange = function() {
         if( request.readyState == 4 )
-					if( request.status != 200)
-						alert( 'error in sending video to the server' );
+			if( request.status == 200)
+				percEl.innerHTML = 'upload complete, enjoy your recording while it\'s converted!';
+			else
+				percEl.innerHTML = 'error in sending video to the server';
     };
     request.open( 'POST', this.serverUrl + '/stream' );
     request.send( JSON.stringify( { video : rec.videoDataURL } ) );
