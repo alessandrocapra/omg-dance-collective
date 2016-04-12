@@ -22,7 +22,7 @@ Omg.prototype.init = function(){
 	    noFallback: true,
 	    //swffile: "js/fallback/jscam.swf",
 	    quality: 20,
-			el: rec.cameraPreview.id
+		el: rec.cameraPreview.id
 
 	  }, function(stream) {
 			rec.stream = stream;
@@ -182,10 +182,10 @@ Omg.prototype.postFiles = function(){
 	progressEl.appendChild( percEl );
 	rec.background.parentNode.insertBefore( progressEl, rec.background );
 
-	request.onprogress( function( evt ){
+	request.onprogress = function( evt ){
 		if (evt.lengthComputable)
      		percEl.innerHTML = (evt.loaded / evt.total) * 100 + '%';
-	});
+	};
     request.onreadystatechange = function() {
         if( request.readyState == 4 )
 			if( request.status == 200)
