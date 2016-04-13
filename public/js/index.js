@@ -189,13 +189,13 @@ Omg.prototype.postFiles = function(){
 
 	rec.background.parentNode.insertBefore( progressEl, rec.background );
 
-	
+
     request.onreadystatechange = function() {
         if( request.readyState == 4 )
 			if( request.status == 200)
-				percEl.innerHTML = 'upload complete, enjoy your recording while it\'s converted!';
+				progressEl.innerHTML = 'upload complete, enjoy your recording while it\'s converted!';
 			else
-				percEl.innerHTML = 'error in sending video to the server';
+				progressEl.innerHTML = 'error in sending video to the server';
     };
     request.open( 'POST', this.serverUrl + '/stream' );
     request.send( JSON.stringify( { video : rec.videoDataURL } ) );
