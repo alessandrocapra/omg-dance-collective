@@ -29,8 +29,8 @@ var fs = require('fs'),
       		request.on( 'end', function () {
             console.log( 'stream acquisito');
             var
-              videoDir = process.cwd() + '/video/',
-              gifDir = process.cwd() + '/public/gif/',
+              videoDir = __dirname + '/../video/',
+              gifDir = __dirname + '/../public/gif/',
               fileNames = [],
               fileName,
               filePath,
@@ -60,7 +60,7 @@ var fs = require('fs'),
                     return false;
                   }
                   console.log('salvato file ' + filePath );
-                  exec( './server/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
+                  exec( './' + __dirname +  '/gif.sh ' + filePath + ' ' + gifPath, {maxBuffer: 1024 * 500}, function( err, stdout, stderr ){
                     if( err ){
                       console.error( err );
                       return false
@@ -85,7 +85,7 @@ var fs = require('fs'),
         break;
 
           case '/gifs':
-            var gifDir = process.cwd() + '/public/gif/',
+            var gifDir = __dirname + '/public/gif/',
               start = parseInt( url.parse(request.url,true).query.start );
             fs.readdir( gifDir, function( err, files ){
               if( err ){

@@ -34,7 +34,7 @@ Omg.prototype.init = function(){
 			rec.cameraPreview.play();
 
 			rec.cameraPreview.onerror = function() {
-					alert('error in trasmitting data');
+				alert('error in trasmitting data');
 			};
 			rec.button.onclick = function(){ rec.ready(); };
 			rec.button.innerHTML = 'Start Recording';
