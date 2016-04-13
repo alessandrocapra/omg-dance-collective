@@ -85,7 +85,7 @@ var fs = require('fs'),
         break;
 
           case '/gifs':
-            var gifDir = __dirname + '/public/gif/',
+            var gifDir = __dirname + '/../public/gif/',
               start = parseInt( url.parse(request.url,true).query.start );
             fs.readdir( gifDir, function( err, files ){
               if( err ){
