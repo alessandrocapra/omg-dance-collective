@@ -141,7 +141,7 @@ main {
         //border:1px solid $blue;
         display: block;
         margin: 0 auto;
-      }
+      }      
 
       &#camera {
         position: absolute;
@@ -160,8 +160,9 @@ main {
         width: 40vw;
         margin-left:-20vw;
       }
-
-      &#progress{
+      
+    }
+    #progress{
         position: absolute;
         top:3%;
         left: 50%;
@@ -169,7 +170,6 @@ main {
         margin-left:-20vw;
         background: rgba(255,255,255,0.5);
       }
-    }
   }
 
   #grid {

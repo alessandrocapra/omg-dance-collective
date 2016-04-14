@@ -1,63 +1,264 @@
-/*
-Error: Invalid CSS after "...    height:57vh": expected "{", was ";"
-        on line 151 of stile.scss
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+/* Variables */
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1.2vw; }
 
-146:       &#camera {
-147:         position: absolute;
-148:         right:3vw;
-149:         top: 1vw;
-150: <<<<<<< HEAD
-151:         height:57vh;
-152:         width: 30vw;
-153: =======
-154:         height: 50vh;
-155: >>>>>>> origin/master
-156:         z-index: 1001 ;
+p, span, a {
+  line-height: 2;
+  color: #0000ff; }
+  p.sottolineo, span.sottolineo, a.sottolineo {
+    border-bottom: 3px solid #0000ff;
+    padding-bottom: 5px; }
 
-Backtrace:
-stile.scss:151
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1179:in `expected'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1115:in `expected'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1110:in `tok!'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:654:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:724:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:674:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:655:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:724:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:674:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:655:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:724:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:674:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:655:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:724:in `declaration_or_ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:674:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:655:in `block'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:647:in `ruleset'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:673:in `block_child'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:123:in `stylesheet'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:39:in `parse'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/engine.rb:403:in `_to_tree'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/engine.rb:378:in `_render_with_sourcemap'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/engine.rb:295:in `render_with_sourcemap'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `each'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin.rb:82:in `update_stylesheets'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:363:in `watch_or_update'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:51:in `process_result'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/base.rb:52:in `parse'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/base.rb:19:in `parse!'
-/var/lib/gems/2.1.0/gems/sass-3.4.21/bin/scss:13:in `<top (required)>'
-/usr/local/bin/scss:23:in `load'
-/usr/local/bin/scss:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...    height:57vh\": expected \"{\", was \";\"\A         on line 151 of stile.scss\A \A 146:       &#camera {\A 147:         position: absolute;\A 148:         right:3vw;\A 149:         top: 1vw;\A 150: <<<<<<< HEAD\A 151:         height:57vh;\A 152:         width: 30vw;\A 153: =======\A 154:         height: 50vh;\A 155: >>>>>>> origin/master\A 156:         z-index: 1001 ;"; }
+.pulsante {
+  background-color: transparent;
+  color: #0000ff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.1vw;
+  font-weight: 700;
+  padding: 1vh 1vw;
+  border: 2px solid #0000ff; }
+  .pulsante:active, .pulsante:hover {
+    text-decoration: none;
+    background-color: #0000ff;
+    color: #ffffff;
+    font-weight: 700;
+    border: 2px solid #0000ff; }
+
+header {
+  height: 4.5vmax;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+  padding: 2vh -2vh;
+  text-align: center; }
+  header h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 2vw;
+    font-weight: 700; }
+    header h1 a {
+      color: #0000ff;
+      border-bottom: 3px solid #0000ff;
+      padding-bottom: 5px;
+      display: inline; }
+      header h1 a:hover {
+        color: #0000ff;
+        text-decoration: none; }
+
+main {
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  padding-bottom: 4.5vmax; }
+  main #intro #no-rec {
+    position: absolute;
+    top: 3vmax;
+    left: 50%;
+    min-height: 94vh;
+    width: 73%;
+    height: auto;
+    z-index: +1002;
+    overflow: hidden;
+    background-color: #fff;
+    color: #0000ff;
+    margin-left: -36.5%;
+    text-align: center;
+    border: 1px solid #0000ff; }
+    main #intro #no-rec p, main #intro #no-rec a {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: auto; }
+    main #intro #no-rec a {
+      top: 80%;
+      width: 160px; }
+  main #intro #final-buttons {
+    display: none;
+    text-align: center; }
+    main #intro #final-buttons .trePulsanti {
+      margin-top: -45vh;
+      display: inline-block; }
+  main #intro video#background {
+    position: relative;
+    top: 3vmax;
+    min-height: 50vh;
+    width: 73%;
+    height: auto;
+    z-index: -100;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto; }
+  main #intro video#camera {
+    position: absolute;
+    right: 3vw;
+    top: 1vw;
+    width: 30vw;
+    height: 50vh;
+    z-index: 1001; }
+  main #intro video#preview {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    height: 55vh;
+    width: 40vw;
+    margin-left: -20vw; }
+  main #intro #progress {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    width: 40vw;
+    margin-left: -20vw;
+    background: rgba(255, 255, 255, 0.5); }
+  main #grid {
+    padding-top: 10vh; }
+    main #grid .row {
+      margin: 2vh 11vw; }
+      main #grid .row .col-sm-3 {
+        padding-right: 1vh;
+        padding-left: 1vh; }
+    main #grid .row:first-child {
+      margin-top: 10vh; }
+    main #grid .row:last-child {
+      margin-bottom: 6vw; }
+    main #grid .row:nth-child(odd) .col-sm-3:nth-child(even) img {
+      transform: rotateY(180deg); }
+    main #grid .row:nth-child(even) .col-sm-3 {
+      transform: rotateX(180deg); }
+      main #grid .row:nth-child(even) .col-sm-3:nth-child(even) img {
+        transform: rotateY(180deg); }
+    main #grid img {
+      width: 100%; }
+  main #about {
+    color: #0000ff; }
+    main #about .col-sm-6:first-child {
+      padding-right: 2.25vmax; }
+    main #about .col-sm-6:last-child {
+      padding-left: 2.25vmax; }
+    main #about p {
+      text-align: justify;
+      margin-bottom: 5vh; }
+    main #about span {
+      text-align: justify; }
+    main #about a {
+      font-weight: 700;
+      border-bottom: 3px solid #0000ff;
+      padding-bottom: 5px;
+      color: #0000ff; }
+      main #about a:hover {
+        text-decoration: none;
+        border-bottom-color: transparent;
+        background-image: linear-gradient(transparent 30%, #0000ff 50%, transparent 30%); }
+    main #about.row {
+      margin: 2vw 11vw; }
+    main #about .titolo {
+      font-size: 2vw;
+      text-transform: uppercase; }
+    main #about img {
+      width: 100%;
+      height: auto; }
+    main #about figure {
+      margin-bottom: 7.5vh; }
+      main #about figure:first-child {
+        margin-top: 3.5vh; }
+      main #about figure figcaption {
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 2vh; }
+
+footer {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 4.5vmax;
+  padding-top: 2.5vh;
+  font-weight: 700; }
+  footer a {
+    color: #0000ff;
+    display: inline-block; }
+    footer a:hover {
+      color: #0000ff;
+      text-decoration: none;
+      border-bottom: 3px solid #0000ff;
+      padding-bottom: 3px; }
+  footer #watch-tutorial-link,
+  footer #about-link {
+    display: none; }
+  footer.down #watch-tutorial-link, footer.down #about-link {
+    display: inline; }
+  footer #movebutton, footer.about #movebutton {
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid #0000ff;
+    color: #0000ff;
+    font-weight: 700;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 16vw;
+    z-index: 1000;
+    margin-top: 20vh;
+    margin-left: -8vw; }
+    footer #movebutton:active, footer #movebutton:hover, footer.about #movebutton:active, footer.about #movebutton:hover {
+      text-decoration: none;
+      background-color: #0000ff;
+      color: #ffffff;
+      font-weight: 700;
+      border: 2px solid #0000ff; }
+  footer.about #movebutton {
+    position: static;
+    margin: 0; }
+  footer.about #about-link {
+    display: none; }
+
+/* Media queries */
+@media (max-device-width: 360px) {
+  p, span {
+    font-size: 4vw; }
+
+  header {
+    height: 8vmax; }
+    header h1 {
+      font-size: 4vh; }
+
+  main #intro video#background {
+    left: 0;
+    margin-top: 3vh;
+    min-width: 100vw;
+    min-height: auto; }
+  main #intro a.pulsante {
+    font-size: 4vw;
+    padding: 3vw 3vw; }
+  main #intro a#movebutton {
+    top: 0;
+    width: 60vw;
+    margin-left: -30vw; }
+  main #grid img {
+    width: 100%;
+    margin-bottom: 1.5vh; }
+
+  footer {
+    height: 8vmax; }
+    footer h4 {
+      font-size: 4vw; } }
+@media (max-device-width: 768px) {
+  p, span, a {
+    font-size: 2vw; }
+
+  main #intro a.pulsante {
+    font-size: 2vw; }
+  main #intro a#movebutton {
+    width: 30vw;
+    margin-left: -15vw; }
+  main #intro video#background {
+    min-width: 100vw;
+    min-height: 0;
+    height: auto; } }
+
+/*# sourceMappingURL=stile.css.map */
