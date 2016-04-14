@@ -147,8 +147,8 @@ main {
         position: absolute;
         right:3vw;
         top: 1vw;
-        height:57vh;
         width: 30vw;
+        height: 50vh;
         z-index: 1001 ;
       }
 
@@ -159,6 +159,15 @@ main {
         height:55vh;
         width: 40vw;
         margin-left:-20vw;
+      }
+
+      &#progress{
+        position: absolute;
+        top:3%;
+        left: 50%;
+        width: 40vw;
+        margin-left:-20vw;
+        background: rgba(255,255,255,0.5);
       }
     }
   }
