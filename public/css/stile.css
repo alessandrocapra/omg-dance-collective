@@ -100,6 +100,7 @@ main {
     right: 3vw;
     top: 1vw;
     height: 57vh;
+    width: 30vw;
     z-index: 1001; }
   main #intro video#preview {
     position: absolute;
